@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel Background="LightSkyBlue">
+        <StackPanel DockPanel.Dock="Left" Width="125" Background="AliceBlue" x:Name="navBar">
+            <Button Content="Login" Height="60"/>
+            <Button Content="Room reservation" Height="60"/>
+            <Button Content="Edit rooms"  Height="60"/>
+            <Button Content="Add employee"  Height="60"/>
+        </StackPanel>
+        <ContentControl>
+            
+        </ContentControl>
+    </DockPanel>
 </Window>
