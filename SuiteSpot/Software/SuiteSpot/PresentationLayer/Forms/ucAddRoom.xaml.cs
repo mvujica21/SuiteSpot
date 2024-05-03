@@ -1,5 +1,4 @@
-﻿using PresentationLayer.Forms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PresentationLayer
+namespace PresentationLayer.Forms
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ucAddRoom.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ucAddRoom : UserControl
     {
-        public MainWindow()
+        public ucAddRoom()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            contentControl.Content = new ucEditRooms();
         }
     }
 }

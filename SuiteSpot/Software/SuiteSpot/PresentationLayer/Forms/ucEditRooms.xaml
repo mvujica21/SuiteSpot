@@ -6,7 +6,24 @@
              xmlns:local="clr-namespace:PresentationLayer.Forms"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Rooms" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="Auto" />
+        <DataGrid x:Name="dgRooms" Grid.Row="1" AutoGenerateColumns="True" Margin="10" Grid.ColumnSpan="3" />
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnAddEmployee" Content="Add room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Click="btnAddEmployee_Click" />
+            <Button x:Name="btnUpdateEmployee" Content="Update room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Click="btnUpdateEmployee_Click" />
+            <Button x:Name="btnDeleteEmployee" Content="Delete room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Click="btnDeleteEmployee_Click" />
+        </Grid>
     </Grid>
 </UserControl>
