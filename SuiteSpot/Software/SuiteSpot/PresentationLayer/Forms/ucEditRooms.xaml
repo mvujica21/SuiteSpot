@@ -21,9 +21,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="btnAddEmployee" Content="Add room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Click="btnAddEmployee_Click" />
-            <Button x:Name="btnUpdateEmployee" Content="Update room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Click="btnUpdateEmployee_Click" />
-            <Button x:Name="btnDeleteEmployee" Content="Delete room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Click="btnDeleteEmployee_Click" />
+            <Button x:Name="btnAddEmployee" Content="Add room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" />
+            <Button x:Name="btnUpdateEmployee" Content="Update room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"  />
+            <Button x:Name="btnDeleteEmployee" Content="Delete room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"  />
         </Grid>
     </Grid>
 </UserControl>

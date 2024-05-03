@@ -9,7 +9,7 @@
     <DockPanel Background="LightSkyBlue">
         <StackPanel DockPanel.Dock="Left" Width="125" Background="AliceBlue" x:Name="navBar">
             <Button Content="Login" Height="60" x:Name="btnLogin"/>
-            <Button Content="Room reservation" Height="60" x:Name="btnRoomReservation"/>
+            <Button Content="Room reservation" Height="60" x:Name="btnRoomReservation" Click="btnRoomReservation_Click"/>
             <Button Content="Room managment"  Height="60" Click="Button_Click" x:Name="btnEditRooms"/>
             <Button Content="Add employee"  Height="60" x:Name="btnAddEmployee"/>
         </StackPanel>

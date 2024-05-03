@@ -55,11 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Forms\ucAddRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\ucEditRooms.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ucReserveRoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ucRoomReservation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,11 +79,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Forms\RelayCommand.cs" />
+    <Compile Include="Forms\ucAddRoom.xaml.cs">
+      <DependentUpon>ucAddRoom.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ucEditRooms.xaml.cs">
       <DependentUpon>ucEditRooms.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ucReserveRoom.xaml.cs">
       <DependentUpon>ucReserveRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucRoomReservation.xaml.cs">
+      <DependentUpon>ucRoomReservation.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
