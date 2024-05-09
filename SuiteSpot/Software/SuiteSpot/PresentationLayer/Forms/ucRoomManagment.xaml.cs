@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PresentationLayer.Forms
 {
     /// <summary>
-    /// Interaction logic for ucReserveRoom.xaml
+    /// Interaction logic for ucEditRooms.xaml
     /// </summary>
-    public partial class ucReserveRoom : UserControl
+    public partial class ucRoomManagment : UserControl
     {
-        public ucReserveRoom()
+        public ucRoomManagment()
         {
             InitializeComponent();
         }

@@ -26,14 +26,30 @@ namespace PresentationLayer
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            contentControl.Content = new ucEditRooms();
-        }
-
         private void btnRoomReservation_Click(object sender, RoutedEventArgs e)
         {
             contentControl.Content = new ucRoomReservation();
+
+        }
+
+        private void btnDashboard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnManageEmployees_Click(object sender, RoutedEventArgs e)
+        {
+            contentControl.Content = new ucManageEmployees();
+        }
+
+        private void btnTaskManagment_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnRoomManagment_Click(object sender, RoutedEventArgs e)
+        {
+            contentControl.Content = new ucRoomManagment();
 
         }
     }

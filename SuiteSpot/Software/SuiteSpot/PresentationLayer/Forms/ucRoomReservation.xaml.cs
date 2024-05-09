@@ -45,7 +45,9 @@ namespace PresentationLayer.Forms
                 {
                     Day = currentDay,
                     DayString = currentDay.ToString("MMMM d", CultureInfo.InvariantCulture),
-                    ReservationStatus = string.IsNullOrEmpty(reservationInfo) ? "No reservation" : "Reservation"
+                    ReservationStatus = string.IsNullOrEmpty(reservationInfo) ? "No reservation" : "Reservation",
+                    IsToday = currentDay.Date == DateTime.Today
+
                 });
             }
         }
@@ -64,5 +66,7 @@ namespace PresentationLayer.Forms
         public DateTime Day { get; set; }
         public string DayString { get; set; }
         public string ReservationStatus { get; set; }
+        public bool IsToday { get; set; }
+
     }
 }
