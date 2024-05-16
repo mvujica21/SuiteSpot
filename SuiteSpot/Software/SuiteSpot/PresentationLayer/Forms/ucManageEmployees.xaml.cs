@@ -27,7 +27,8 @@ namespace PresentationLayer.Forms
 
         private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            
+            (Window.GetWindow(this) as MainWindow).contentControl.Content = new ucAddEmployee();
+
         }
     }
 }

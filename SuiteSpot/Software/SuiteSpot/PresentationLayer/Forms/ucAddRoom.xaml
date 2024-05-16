@@ -15,7 +15,6 @@
         <!-- Back Button -->
         <Button Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
 
-        <!-- Room Details Form -->
         <Grid Grid.Row="1" Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

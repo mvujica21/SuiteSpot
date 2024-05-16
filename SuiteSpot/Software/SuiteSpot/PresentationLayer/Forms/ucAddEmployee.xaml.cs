@@ -24,5 +24,10 @@ namespace PresentationLayer.Forms
         {
             InitializeComponent();
         }
+
+        private void btnSaveEmployee_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

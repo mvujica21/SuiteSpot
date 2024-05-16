@@ -75,6 +75,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\ucRoomReservationCheckInOut.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ucRoomReservationNumGuests.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -98,6 +106,12 @@
     </Compile>
     <Compile Include="Forms\ucRoomReservation.xaml.cs">
       <DependentUpon>ucRoomReservation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucRoomReservationCheckInOut.xaml.cs">
+      <DependentUpon>ucRoomReservationCheckInOut.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucRoomReservationNumGuests.xaml.cs">
+      <DependentUpon>ucRoomReservationNumGuests.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

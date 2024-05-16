@@ -40,6 +40,6 @@
             <ComboBoxItem Content="Support"/>
         </ComboBox>
 
-        <Button Content="Add Employee" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Click="AddEmployee_Click"/>
+        <Button Content="Save Employee" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnSaveEmployee_Click" x:Name="btnSaveEmployee"/>
     </Grid>
 </UserControl>

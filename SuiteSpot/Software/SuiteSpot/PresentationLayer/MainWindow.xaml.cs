@@ -28,7 +28,7 @@ namespace PresentationLayer
 
         private void btnRoomReservation_Click(object sender, RoutedEventArgs e)
         {
-            contentControl.Content = new ucRoomReservation();
+            contentControl.Content = new ucRoomReservationNumGuests();
 
         }
 

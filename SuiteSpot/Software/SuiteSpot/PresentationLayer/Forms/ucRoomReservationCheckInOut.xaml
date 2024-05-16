@@ -1,13 +1,14 @@
-﻿<UserControl x:Class="PresentationLayer.Forms.ucRoomReservation"
+﻿<UserControl x:Class="PresentationLayer.Forms.ucRoomReservationCheckInOut"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresentationLayer.Forms"
+             mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <DataTemplate x:Key="DayTemplate">
-            <Button Command="{Binding DataContext.SelectDateCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+            <Button Command="{Binding DataContext.SelectDateRangeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                     CommandParameter="{Binding Day}">
                 <Button.Style>
                     <Style TargetType="Button">
@@ -20,15 +21,13 @@
                                 <Setter Property="Background" Value="LightSkyBlue"/>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
-                                <Setter Property="Background" Value="Orange"/>
-                                <!-- Highlight Selected Days -->
+                                <Setter Property="Background" Value="Yellow"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
                 <StackPanel Margin="3">
                     <TextBlock Text="{Binding DayString}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding ReservationStatus}" HorizontalAlignment="Center"/>
                 </StackPanel>
             </Button>
         </DataTemplate>
@@ -41,9 +40,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
-            <Button Content="Previous Month"/>
+            <Button Content="Back" Margin="5" Click="GoBack_Click"/>
+            <Button Content="Previous Month" Click="PreviousMonth_Click"/>
             <TextBlock Text="{Binding CurrentMonthDisplay}" Margin="20" VerticalAlignment="Center" FontSize="16"/>
-            <Button Content="Next Month"/>
+            <Button Content="Next Month" Click="NextMonth_Click"/>
+            <Button Content="Next" Margin="5" Click="ProceedToConfirmation_Click"/>
         </StackPanel>
 
         <ItemsControl Grid.Row="1" ItemsSource="{Binding Days}" ItemTemplate="{StaticResource DayTemplate}">
@@ -55,7 +56,7 @@
         </ItemsControl>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="20">
-            <Button Content="Add Booking" Margin="5" />
+            <Button Content="Add Booking" Margin="5"/>
             <Button Content="Modify Booking" Margin="5"/>
             <Button Content="Cancel Booking" Margin="5"/>
         </StackPanel>
