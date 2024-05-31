@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <DockPanel Background="LightSkyBlue">
         <StackPanel DockPanel.Dock="Left" Width="125" Background="AliceBlue" x:Name="navBar">
             <Button Content="Login" Height="60" x:Name="btnLogin"/>
@@ -13,7 +13,9 @@
             <Button Content="Room managment"  Height="60" Click="btnRoomManagment_Click" x:Name="btnRoomManagment"/>
             <Button Content="Manage employees"  Height="60" x:Name="btnManageEmployees" Click="btnManageEmployees_Click"/>
             <Button Content="Dashboard"  Height="60" x:Name="btnDashboard" Click="btnDashboard_Click"/>
-            <Button Content="Task managment" Height="60" x:Name="btnTaskManagment" Click="btnTaskManagment_Click"/>
+            <Button Content="Task managment" Height="60" x:Name="btnTaskManagment" Click="BtnTaskManagment_Click"/>
+            <Button Content="Facilities" Height="60" x:Name="btnFacilities" Click="btnFacilities_Click"/>
+            <Button Content="Work schedule" Height="60" x:Name="btnWorkSchedule" Click="btnWorkSchedule_Click"/>
             <Button Content="Logout" Height="60" x:Name="btnLogout"/> 
         </StackPanel>
         <ContentControl x:Name="contentControl">

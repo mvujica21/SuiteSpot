@@ -42,7 +42,7 @@ namespace PresentationLayer
             contentControl.Content = new ucManageEmployees();
         }
 
-        private void btnTaskManagment_Click(object sender, RoutedEventArgs e)
+        private void BtnTaskManagment_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -51,6 +51,16 @@ namespace PresentationLayer
         {
             contentControl.Content = new ucRoomManagment();
 
+        }
+
+        private void btnFacilities_Click(object sender, RoutedEventArgs e)
+        {
+            contentControl.Content = new ucManageFacilities();
+        }
+
+        private void btnWorkSchedule_Click(object sender, RoutedEventArgs e)
+        {
+            contentControl.Content = new ucManageWorkSchedule();
         }
     }
 }
