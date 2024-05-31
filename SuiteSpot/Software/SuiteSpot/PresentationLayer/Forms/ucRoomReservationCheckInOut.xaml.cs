@@ -63,15 +63,23 @@ namespace PresentationLayer.Forms
                     Day = currentDay,
                     DayString = currentDay.ToString("MMMM d", CultureInfo.InvariantCulture),
                     ReservationStatus = "Available",
-                    IsToday = currentDay.Date == DateTime.Today
+                    IsToday = currentDay.Date == DateTime.Today,
+                    IsEnabled = currentDay >= DateTime.Today
                 });
             }
         }
+
 
         private void SelectDateRange(object parameter)
         {
             if (parameter is DateTime selectedDate)
             {
+                if (selectedDate < DateTime.Today)
+                {
+                    Debug.WriteLine($"Date {selectedDate.ToShortDateString()} is before today and cannot be selected.");
+                    return; // Ignore dates before today
+                }
+
                 if (_checkInDate == null || _checkOutDate != null)
                 {
                     _checkInDate = selectedDate;
@@ -90,6 +98,7 @@ namespace PresentationLayer.Forms
                 UpdateCalendarDays();
             }
         }
+
 
         private void UpdateCalendarDays()
         {
@@ -120,12 +129,10 @@ namespace PresentationLayer.Forms
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            // Add your logic here to navigate back to the previous view or step
         }
 
         private void ProceedToConfirmation_Click(object sender, RoutedEventArgs e)
         {
-            // Add your logic here to proceed to confirmation or next step of the booking process
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -138,6 +145,8 @@ namespace PresentationLayer.Forms
     public class ReservationDay : INotifyPropertyChanged
     {
         private bool _isSelected;
+        private bool _isEnabled;
+
         public DateTime Day { get; set; }
         public string DayString { get; set; }
         public bool IsToday { get; set; }
@@ -156,6 +165,19 @@ namespace PresentationLayer.Forms
             }
         }
 
+        public bool IsEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                if (_isEnabled != value)
+                {
+                    _isEnabled = value;
+                    OnPropertyChanged(nameof(IsEnabled));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
@@ -163,6 +185,7 @@ namespace PresentationLayer.Forms
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+
 
 
 }

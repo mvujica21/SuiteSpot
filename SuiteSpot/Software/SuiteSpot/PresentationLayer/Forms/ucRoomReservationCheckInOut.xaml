@@ -9,7 +9,8 @@
     <UserControl.Resources>
         <DataTemplate x:Key="DayTemplate">
             <Button Command="{Binding DataContext.SelectDateRangeCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                    CommandParameter="{Binding Day}">
+                    CommandParameter="{Binding Day}"
+                    IsEnabled="{Binding IsEnabled}">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Background" Value="Transparent"/>
@@ -22,6 +23,10 @@
                             </DataTrigger>
                             <DataTrigger Binding="{Binding IsSelected}" Value="True">
                                 <Setter Property="Background" Value="Yellow"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsEnabled}" Value="False">
+                                <Setter Property="Background" Value="LightGray"/>
+                                <Setter Property="Foreground" Value="DarkGray"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

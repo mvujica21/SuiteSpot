@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PresentationLayer.Forms"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="20">
@@ -20,7 +19,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Labels and input fields -->
         <TextBlock Text="First Name:" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
         <TextBox x:Name="FirstNameTextBox" Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
 
@@ -36,8 +34,8 @@
         <TextBlock Text="Role:" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"/>
         <ComboBox x:Name="RoleComboBox" Grid.Row="4" Grid.Column="1" Margin="5" VerticalAlignment="Center">
             <ComboBoxItem Content="Manager"/>
-            <ComboBoxItem Content="Sales"/>
-            <ComboBoxItem Content="Support"/>
+            <ComboBoxItem Content="Reception"/>
+            <ComboBoxItem Content="Cleaning"/>
         </ComboBox>
 
         <Button Content="Save Employee" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Click="btnSaveEmployee_Click" x:Name="btnSaveEmployee"/>

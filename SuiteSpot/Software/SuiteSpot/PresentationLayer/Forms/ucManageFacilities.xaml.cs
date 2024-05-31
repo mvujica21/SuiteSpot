@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace PresentationLayer.Forms
 {
     /// <summary>
-    /// Interaction logic for ucEditRooms.xaml
+    /// Interaction logic for ucManageFacilities.xaml
     /// </summary>
-    public partial class ucRoomManagment : UserControl
+    public partial class ucManageFacilities : UserControl
     {
-        public ucRoomManagment()
+        public ucManageFacilities()
         {
             InitializeComponent();
-        }
-
-        private void cbRoomType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

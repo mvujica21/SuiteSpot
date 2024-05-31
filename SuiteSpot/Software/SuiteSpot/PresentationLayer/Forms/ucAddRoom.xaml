@@ -33,11 +33,10 @@
 
             <TextBlock Text="Price:" VerticalAlignment="Center"/>
             <TextBlock Text="Type of Room:" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBlock Text="Max Capacity:" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBlock Text="Capacity:" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBlock Text="Name:" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBlock Text="Description:" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBlock Text="Number:" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBlock Text="Room Category:" Grid.Row="6" VerticalAlignment="Center"/>
 
             <TextBox Grid.Column="1" VerticalAlignment="Center" Margin="10" x:Name="PriceTextBox"/>
             <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10" x:Name="RoomTypeComboBox"/>
@@ -45,7 +44,6 @@
             <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="10" x:Name="NameTextBox"/>
             <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10" x:Name="DescriptionTextBox"/>
             <TextBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="10" x:Name="NumberTextBox"/>
-            <ComboBox Grid.Column="1" Grid.Row="6" VerticalAlignment="Center" Margin="10" x:Name="RoomCategoryComboBox"/>
 
             <StackPanel Grid.Column="1" Grid.Row="7" Orientation="Horizontal" Margin="10">
                 <Button x:Name="btnSave" Content="Save" Margin="0,0,10,0"/>

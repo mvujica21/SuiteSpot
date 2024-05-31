@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="PresentationLayer.Forms.ucManageFacilities"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PresentationLayer.Forms"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid Background="AliceBlue">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Facilities" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="3" Width="Auto" />
+            <DataGrid x:Name="dgFacilities" Grid.Row="1" AutoGenerateColumns="True" Margin="10" Grid.ColumnSpan="3" />
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnAddFacility" Content="Add facility" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"/>
+                <Button x:Name="btnUpdateFacility" Content="Edit facility" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"  />
+                <Button x:Name="btnDeleteFacility" Content="Delete facility" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"  />
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>
