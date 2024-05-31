@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BusinessLogicLayer.Services;
+using HotelManagement.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +22,19 @@ namespace PresentationLayer.Forms
     /// </summary>
     public partial class ucManageEmployees : UserControl
     {
+        EmployeeService employeeService;
+
         public ucManageEmployees()
         {
             InitializeComponent();
+            employeeService = new EmployeeService();
+            LoadEmployees();
         }
-
+        private void LoadEmployees()
+        {
+            List<Employee> rooms = employeeService.GetEmployees();
+            dgRooms.ItemsSource = rooms;
+        }
         private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
             (Window.GetWindow(this) as MainWindow).contentControl.Content = new ucAddEmployee();

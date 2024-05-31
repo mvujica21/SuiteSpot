@@ -10,7 +10,7 @@ namespace HotelManagement.Entities
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
-        public int RoleId { get; set; }
+        public int role_id { get; set; }
         public Role Role { get; set; }
 
         public ICollection<RoomReservation> RoomReservations { get; set; }
