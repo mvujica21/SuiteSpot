@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,10 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Bill.cs" />
+    <Compile Include="Entities\ContactDetails.cs" />
+    <Compile Include="Entities\Employee.cs" />
+    <Compile Include="Entities\EmployeeSchedule.cs" />
+    <Compile Include="Entities\EventReservation.cs" />
+    <Compile Include="Entities\EventSpace.cs" />
+    <Compile Include="Entities\Facility.cs" />
+    <Compile Include="Entities\FacilityBilling.cs" />
+    <Compile Include="Entities\Guest.cs" />
+    <Compile Include="Entities\Review.cs" />
+    <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\Room.cs" />
+    <Compile Include="Entities\RoomReservation.cs" />
+    <Compile Include="Entities\Schedule.cs" />
+    <Compile Include="Entities\Shift.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
