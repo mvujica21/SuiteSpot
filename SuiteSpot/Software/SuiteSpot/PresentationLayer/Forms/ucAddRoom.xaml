@@ -12,7 +12,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Back Button -->
         <Button Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10"/>
 
         <Grid Grid.Row="1" Margin="20">
@@ -39,15 +38,19 @@
             <TextBlock Text="Number:" Grid.Row="5" VerticalAlignment="Center"/>
 
             <TextBox Grid.Column="1" VerticalAlignment="Center" Margin="10" x:Name="PriceTextBox"/>
-            <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10" x:Name="RoomTypeComboBox"/>
+            <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10" x:Name="RoomTypeComboBox">
+                <ComboBoxItem Content="Single" />
+                <ComboBoxItem Content="Double" />
+                <ComboBoxItem Content="Suite" />
+            </ComboBox>
             <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="10" x:Name="MaxCapacityTextBox"/>
             <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="10" x:Name="NameTextBox"/>
             <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10" x:Name="DescriptionTextBox"/>
             <TextBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="10" x:Name="NumberTextBox"/>
 
             <StackPanel Grid.Column="1" Grid.Row="7" Orientation="Horizontal" Margin="10">
-                <Button x:Name="btnSave" Content="Save" Margin="0,0,10,0"/>
-                <Button x:Name="btnCancel" Content="Cancel"/>
+                <Button x:Name="btnSave" Content="Save" Margin="0,0,10,0" Click="btnSave_Click"/>
+                <Button x:Name="btnCancel" Content="Cancel" Click="btnCancel_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

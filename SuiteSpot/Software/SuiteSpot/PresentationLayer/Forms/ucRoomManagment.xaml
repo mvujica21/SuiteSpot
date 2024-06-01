@@ -13,7 +13,6 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <!-- Header with Title, ComboBox, and Search Box -->
         <Grid Grid.Row="0" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -45,9 +44,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button x:Name="btnAddRoom" Content="Add room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"/>
-            <Button x:Name="btnUpdateRoom" Content="Update room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
-            <Button x:Name="btnDeleteRoom" Content="Delete room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"/>
+            <Button x:Name="btnAddRoom" Content="Add room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Click="btnAddRoom_Click"/>
+            <Button x:Name="btnUpdateRoom" Content="Update room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Click="btnUpdateRoom_Click"/>
+            <Button x:Name="btnDeleteRoom" Content="Delete room" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Click="btnDeleteRoom_Click"/>
         </Grid>
     </Grid>
 </UserControl>

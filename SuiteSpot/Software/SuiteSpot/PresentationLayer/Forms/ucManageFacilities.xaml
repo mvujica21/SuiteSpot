@@ -22,9 +22,9 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnAddFacility" Content="Add facility" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0"/>
-                <Button x:Name="btnUpdateFacility" Content="Edit facility" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"  />
-                <Button x:Name="btnDeleteFacility" Content="Delete facility" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2"  />
+                <Button x:Name="btnAddFacility" Content="Add facility" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Click="btnAddFacility_Click"/>
+                <Button x:Name="btnUpdateFacility" Content="Edit facility" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Click="btnUpdateFacility_Click" />
+                <Button x:Name="btnDeleteFacility" Content="Delete facility" Width="Auto" Height="Auto" Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Click="btnDeleteFacility_Click"  />
             </Grid>
         </Grid>
     </Grid>

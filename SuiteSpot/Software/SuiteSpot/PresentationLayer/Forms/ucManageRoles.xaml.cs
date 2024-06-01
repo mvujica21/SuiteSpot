@@ -26,6 +26,7 @@ namespace PresentationLayer.Forms
         }
         private void btnAddRole_Click(object sender, RoutedEventArgs e)
         {
+            (Window.GetWindow(this) as MainWindow).contentControl.Content = new ucAddRole();
 
         }
 

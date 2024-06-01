@@ -131,6 +131,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\ucAddFacility.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\ucAddRole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -178,6 +182,9 @@
     <Compile Include="Forms\RelayCommand.cs" />
     <Compile Include="Forms\ucAddEmployee.xaml.cs">
       <DependentUpon>ucAddEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucAddFacility.xaml.cs">
+      <DependentUpon>ucAddFacility.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ucAddRole.xaml.cs">
       <DependentUpon>ucAddRole.xaml</DependentUpon>
