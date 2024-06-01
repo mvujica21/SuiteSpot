@@ -116,6 +116,7 @@
     <Compile Include="Repositories\FaciltiyRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
+    <Compile Include="Repositories\ScheduleRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

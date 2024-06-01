@@ -1,22 +1,22 @@
 ﻿<UserControl x:Class="PresentationLayer.Forms.ucManageWorkSchedule"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:PresentationLayer.Forms"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Resources>
             <Style TargetType="DataGridCell">
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding}" Value="8am-4pm">
+                    <DataTrigger Binding="{Binding}" Value="07:00 - 15:00">
                         <Setter Property="Background" Value="Yellow" />
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="1pm-9pm">
+                    <DataTrigger Binding="{Binding}" Value="15:00 - 23:00">
                         <Setter Property="Background" Value="Blue" />
                     </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="10pm-6am">
+                    <DataTrigger Binding="{Binding}" Value="23:00 - 07:00">
                         <Setter Property="Background" Value="Green" />
                     </DataTrigger>
                     <DataTrigger Binding="{Binding}" Value="Off">
@@ -53,10 +53,12 @@
 
             <DataGrid x:Name="dgWorkSchedule" Grid.Row="1" AutoGenerateColumns="False" Margin="10">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Employee" Binding="{Binding Name}" Width="*" />
-                    <!-- The rest of the columns will be dynamically generated -->
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*" />
+                    <DataGridTextColumn Header="Employee" Binding="{Binding EmployeeName}" Width="*" />
+                    <DataGridTextColumn Header="Shift" Binding="{Binding Shift}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
+
         </Grid>
     </Grid>
 </UserControl>

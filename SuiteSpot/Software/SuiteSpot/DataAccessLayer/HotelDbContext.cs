@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,38 @@ namespace DataAccessLayer
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Conventions.Remove<System.Data.Entity.ModelConfiguration.Conventions.PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            modelBuilder.Entity<Schedule>()
+                .ToTable("schedule")
+                .HasKey(s => s.Id);
+
+            modelBuilder.Entity<EmployeeSchedule>()
+                .ToTable("employee_schedule")
+                .HasKey(es => es.Id);
+
+            modelBuilder.Entity<Employee>()
+                .ToTable("employee")
+                .HasKey(e => e.Id);
+
+            modelBuilder.Entity<Shift>()
+                .ToTable("shift")
+                .HasKey(s => s.Id);
+
+            modelBuilder.Entity<Schedule>()
+                .HasMany(s => s.EmployeeSchedules)
+                .WithRequired(es => es.Schedule)
+                .HasForeignKey(es => es.ScheduleId);
+
+            modelBuilder.Entity<Employee>()
+                .HasMany(e => e.EmployeeSchedules)
+                .WithRequired(es => es.Employee)
+                .HasForeignKey(es => es.EmployeeId);
+
+            modelBuilder.Entity<Schedule>()
+                .HasRequired(s => s.Shift)
+                .WithMany(sh => sh.Schedules)
+                .HasForeignKey(s => s.ShiftId);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace PresentationLayer.Forms
                 PhoneNumberTextBox.Text = employee.PhoneNumber;
                 RoleComboBox.SelectedItem = RoleComboBox.Items
                     .Cast<ComboBoxItem>()
-                    .FirstOrDefault(item => item.Content.ToString() == GetRoleNameById(employee.role_id));
+                    .FirstOrDefault(item => item.Content.ToString() == GetRoleNameById(employee.RoleId));
             }
         }
 
@@ -63,7 +63,7 @@ namespace PresentationLayer.Forms
                 currentEmployee.LastName = lastName;
                 currentEmployee.Email = email;
                 currentEmployee.PhoneNumber = phoneNumber;
-                currentEmployee.role_id = roleId;
+                currentEmployee.RoleId = roleId;
 
                 if (currentEmployee.Id == 0)
                 {
