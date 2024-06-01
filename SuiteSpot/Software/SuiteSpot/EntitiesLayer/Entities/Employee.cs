@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HotelManagement.Entities
 {
@@ -10,7 +11,10 @@ namespace HotelManagement.Entities
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
+        [Column("role_id")]
         public int role_id { get; set; }
+
+        [ForeignKey("role_id")]
         public Role Role { get; set; }
 
         public ICollection<RoomReservation> RoomReservations { get; set; }

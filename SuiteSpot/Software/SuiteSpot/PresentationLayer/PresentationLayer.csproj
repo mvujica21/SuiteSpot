@@ -127,8 +127,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Testni.cs" />
     <Page Include="Forms\ucAddEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ucAddRole.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ucManageFacilities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ucManageRoles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,6 +179,9 @@
     <Compile Include="Forms\ucAddEmployee.xaml.cs">
       <DependentUpon>ucAddEmployee.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ucAddRole.xaml.cs">
+      <DependentUpon>ucAddRole.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ucAddRoom.xaml.cs">
       <DependentUpon>ucAddRoom.xaml</DependentUpon>
     </Compile>
@@ -180,6 +190,9 @@
     </Compile>
     <Compile Include="Forms\ucManageFacilities.xaml.cs">
       <DependentUpon>ucManageFacilities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucManageRoles.xaml.cs">
+      <DependentUpon>ucManageRoles.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ucManageWorkSchedule.xaml.cs">
       <DependentUpon>ucManageWorkSchedule.xaml</DependentUpon>
@@ -227,10 +240,6 @@
     <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj">
       <Project>{e128d2a2-8c5e-42ba-8389-2c351355b9b0}</Project>
       <Name>BusinessLogicLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
-      <Project>{851c7d65-95fb-4d78-86e4-c83fc4c9c3e2}</Project>
-      <Name>DataAccessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\EntitiesLayer\EntitiesLayer.csproj">
       <Project>{9c6f6bbf-7ada-4ebf-bd3f-82bea72f6ccf}</Project>

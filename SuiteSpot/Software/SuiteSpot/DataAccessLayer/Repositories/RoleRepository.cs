@@ -4,37 +4,35 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    public class EmployeeRepository : IDisposable
+    public class RoleRepository : IDisposable
     {
         public HotelDbContext Context { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-
-        public EmployeeRepository()
+        public DbSet<Role> Roles { get; set; }
+        public RoleRepository()
         {
             Context = new HotelDbContext();
-            Employees = Context.Set<Employee>();
+            Roles = Context.Set<Role>();
         }
-        public IQueryable<Employee> GetEmployees()
+        public IQueryable<Role> GetRoles()
         {
-            return Employees.AsQueryable();
+            return Context.Roles.AsQueryable();
         }
-        public bool AddEmployee(Employee employee)
+        public bool AddRole(Role role)
         {
             try
             {
-                Context.Employees.Add(employee);
+                Context.Roles.Add(role);
                 Context.SaveChanges();
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error adding employee: {ex.Message}");
+                Debug.WriteLine($"Error adding role: {ex.Message}");
                 var inner = ex.InnerException;
                 while (inner != null)
                 {
@@ -45,14 +43,14 @@ namespace DataAccessLayer.Repositories
             }
         }
 
-        public bool UpdateEmployee(Employee employee)
+        public bool UpdateRole(Role role)
         {
             try
             {
-                Employee currentEmployee = Employees.Find(employee.Id);
-                if (currentEmployee != null)
+                Role currentRole = Roles.Find(role.Id);
+                if (currentRole != null)
                 {
-                    Context.Entry(currentEmployee).CurrentValues.SetValues(employee);
+                    Context.Entry(currentRole).CurrentValues.SetValues(role);
                     Context.SaveChanges();
                     return true;
                 }
@@ -68,14 +66,14 @@ namespace DataAccessLayer.Repositories
             }
         }
 
-        public bool DeleteEmployee(Employee employee)
+        public bool DeleteRole(Role role)
         {
             try
             {
-                Employee currentEmployee = Employees.Find(employee.Id);
-                if (currentEmployee != null)
+                Role currentRole= Roles.Find(role.Id);
+                if (currentRole != null)
                 {
-                    Employees.Remove(currentEmployee);
+                    Roles.Remove(currentRole);
                     Context.SaveChanges();
                     return true;
                 }
