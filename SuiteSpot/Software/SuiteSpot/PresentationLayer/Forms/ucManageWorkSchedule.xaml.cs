@@ -1,7 +1,9 @@
 ﻿using BusinessLogicLayer.Services;
-using HotelManagement.Entities;
-using System.Collections.Generic;
+using EntitiesLayer.ViewModel;
+using System;
+using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace PresentationLayer.Forms
 {
@@ -18,30 +20,23 @@ namespace PresentationLayer.Forms
 
         private void LoadSchedules()
         {
-            var schedules = scheduleService.GetSchedulesForNext7Days();
-            var scheduleDisplayList = new List<ScheduleDisplay>();
+            var transformedSchedules = scheduleService.GetTransformedSchedulesForNext7Days();
 
-            foreach (var schedule in schedules)
+            dgWorkSchedule.Columns.Clear();
+            dgWorkSchedule.Columns.Add(new DataGridTextColumn { Header = "Employee", Binding = new Binding("EmployeeName") });
+
+            var dates = Enumerable.Range(0, 7).Select(i => DateTime.Today.AddDays(i).ToString("yyyy-MM-dd")).ToList();
+
+            foreach (var date in dates)
             {
-                foreach (var employeeSchedule in schedule.EmployeeSchedules)
+                dgWorkSchedule.Columns.Add(new DataGridTextColumn
                 {
-                    scheduleDisplayList.Add(new ScheduleDisplay
-                    {
-                        Date = schedule.Date.ToString("yyyy-MM-dd"),
-                        EmployeeName = $"{employeeSchedule.Employee.FirstName} {employeeSchedule.Employee.LastName}",
-                        Shift = $"{schedule.ShiftStart} - {schedule.ShiftEnd}"
-                    });
-                }
+                    Header = date,
+                    Binding = new Binding($"Shifts[{date}]")
+                });
             }
 
-            dgWorkSchedule.ItemsSource = scheduleDisplayList;
+            dgWorkSchedule.ItemsSource = transformedSchedules;
         }
-    }
-
-    public class ScheduleDisplay
-    {
-        public string Date { get; set; }
-        public string EmployeeName { get; set; }
-        public string Shift { get; set; }
     }
 }

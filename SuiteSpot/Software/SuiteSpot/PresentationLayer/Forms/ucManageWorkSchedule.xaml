@@ -7,58 +7,53 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.Resources>
-            <Style TargetType="DataGridCell">
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding}" Value="07:00 - 15:00">
-                        <Setter Property="Background" Value="Yellow" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="15:00 - 23:00">
-                        <Setter Property="Background" Value="Blue" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="23:00 - 07:00">
-                        <Setter Property="Background" Value="Green" />
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding}" Value="Off">
-                        <Setter Property="Background" Value="Gray" />
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-        </Grid.Resources>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Margin="10">
-                <TextBlock Text="Legend: " FontWeight="Bold" Margin="0,0,10,0"/>
-                <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
-                    <Rectangle Width="20" Height="20" Fill="Yellow" Margin="0,0,5,0"/>
-                    <TextBlock Text="Morning Shift"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
-                    <Rectangle Width="20" Height="20" Fill="Blue" Margin="0,0,5,0"/>
-                    <TextBlock Text="Afternoon Shift"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
-                    <Rectangle Width="20" Height="20" Fill="Green" Margin="0,0,5,0"/>
-                    <TextBlock Text="Night Shift"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
-                    <Rectangle Width="20" Height="20" Fill="Gray" Margin="0,0,5,0"/>
-                    <TextBlock Text="Off"/>
-                </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="Legend: " FontWeight="Bold" Margin="0,0,10,0"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                <Rectangle Width="20" Height="20" Fill="Yellow" Margin="0,0,5,0"/>
+                <TextBlock Text="Morning Shift"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                <Rectangle Width="20" Height="20" Fill="Blue" Margin="0,0,5,0"/>
+                <TextBlock Text="Afternoon Shift"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                <Rectangle Width="20" Height="20" Fill="Green" Margin="0,0,5,0"/>
+                <TextBlock Text="Night Shift"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                <Rectangle Width="20" Height="20" Fill="Gray" Margin="0,0,5,0"/>
+                <TextBlock Text="Off"/>
+            </StackPanel>
+        </StackPanel>
 
-            <DataGrid x:Name="dgWorkSchedule" Grid.Row="1" AutoGenerateColumns="False" Margin="10">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="*" />
-                    <DataGridTextColumn Header="Employee" Binding="{Binding EmployeeName}" Width="*" />
-                    <DataGridTextColumn Header="Shift" Binding="{Binding Shift}" Width="*" />
-                </DataGrid.Columns>
-            </DataGrid>
-
-        </Grid>
+        <DataGrid x:Name="dgWorkSchedule" Grid.Row="1" AutoGenerateColumns="False" Margin="10">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Content.Text, RelativeSource={RelativeSource Self}}" Value="07:00 - 15:00">
+                            <Setter Property="Background" Value="Yellow"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Content.Text, RelativeSource={RelativeSource Self}}" Value="15:00 - 23:00">
+                            <Setter Property="Background" Value="Blue"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Content.Text, RelativeSource={RelativeSource Self}}" Value="23:00 - 07:00">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Content.Text, RelativeSource={RelativeSource Self}}" Value="Off">
+                            <Setter Property="Background" Value="Gray"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Employee" Binding="{Binding EmployeeName}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

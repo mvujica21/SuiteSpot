@@ -180,6 +180,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Forms\RelayCommand.cs" />
+    <Compile Include="Forms\ShiftToColorConverter.cs" />
     <Compile Include="Forms\ucAddEmployee.xaml.cs">
       <DependentUpon>ucAddEmployee.xaml</DependentUpon>
     </Compile>
