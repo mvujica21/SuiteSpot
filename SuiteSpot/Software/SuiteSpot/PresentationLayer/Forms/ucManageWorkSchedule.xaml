@@ -9,6 +9,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -32,7 +33,19 @@
             </StackPanel>
         </StackPanel>
 
-        <DataGrid x:Name="dgWorkSchedule" Grid.Row="1" AutoGenerateColumns="False" Margin="10">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="10">
+            <ComboBox x:Name="cbEmployees" Width="150" Margin="5" DisplayMemberPath="EmployeeName"/>
+            <ComboBox x:Name="cbDates" Width="150" Margin="5"/>
+            <ComboBox x:Name="cbShifts" Width="150" Margin="5">
+                <ComboBoxItem Content="07:00 - 15:00" />
+                <ComboBoxItem Content="15:00 - 23:00" />
+                <ComboBoxItem Content="23:00 - 07:00" />
+                <ComboBoxItem Content="Off" />
+            </ComboBox>
+            <Button Content="Add Shift" Width="100" Margin="5" Click="btnAddShift_Click"/>
+        </StackPanel>
+
+        <DataGrid x:Name="dgWorkSchedule" Grid.Row="2" AutoGenerateColumns="False" Margin="10">
             <DataGrid.Resources>
                 <Style TargetType="DataGridCell">
                     <Style.Triggers>

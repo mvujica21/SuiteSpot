@@ -23,11 +23,13 @@ namespace BusinessLogicLayer.Services
                 {
                     foreach (var employeeSchedule in schedule.EmployeeSchedules)
                     {
+                        var employeeId = employeeSchedule.EmployeeId;
                         var employeeName = $"{employeeSchedule.Employee.FirstName} {employeeSchedule.Employee.LastName}";
                         if (!employeeSchedules.ContainsKey(employeeName))
                         {
                             employeeSchedules[employeeName] = new EmployeeScheduleViewModel
                             {
+                                EmployeeId = employeeId,
                                 EmployeeName = employeeName
                             };
                         }
@@ -41,6 +43,30 @@ namespace BusinessLogicLayer.Services
                 }
 
                 return employeeSchedules.Values.ToList();
+            }
+        }
+
+        public void AddSchedule(DateTime date, TimeSpan shiftStart, TimeSpan shiftEnd, int shiftId, int employeeId)
+        {
+            using (var scheduleRepository = new ScheduleRepository())
+            {
+                var schedule = new Schedule
+                {
+                    Date = date,
+                    ShiftStart = shiftStart,
+                    ShiftEnd = shiftEnd,
+                    ShiftId = shiftId,
+                    EmployeeSchedules = new List<EmployeeSchedule>()
+                };
+
+                scheduleRepository.AddSchedule(schedule, employeeId);
+            }
+        }
+        public void DeleteSchedule(DateTime date, int employeeId)
+        {
+            using (var scheduleRepository = new ScheduleRepository())
+            {
+                scheduleRepository.DeleteSchedule(date, employeeId);
             }
         }
     }

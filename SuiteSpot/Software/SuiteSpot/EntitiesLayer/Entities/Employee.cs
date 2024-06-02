@@ -19,5 +19,7 @@ namespace HotelManagement.Entities
         public Role Role { get; set; }
 
         public ICollection<EmployeeSchedule> EmployeeSchedules { get; set; }
+        public string FullName => $"{FirstName} {LastName}";
+
     }
 }

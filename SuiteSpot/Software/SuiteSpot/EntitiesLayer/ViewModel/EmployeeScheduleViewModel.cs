@@ -8,6 +8,8 @@ namespace EntitiesLayer.ViewModel
 {
     public class EmployeeScheduleViewModel
     {
+        public int EmployeeId { get; set; }
+
         public string EmployeeName { get; set; }
         public Dictionary<string, string> Shifts { get; set; }
 

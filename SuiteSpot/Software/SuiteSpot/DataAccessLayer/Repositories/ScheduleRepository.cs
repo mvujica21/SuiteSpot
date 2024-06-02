@@ -26,6 +26,31 @@ namespace DataAccessLayer.Repositories
                 .ToList();
         }
 
+        public void AddSchedule(Schedule schedule, int employeeId)
+        {
+            var employeeSchedule = new EmployeeSchedule
+            {
+                EmployeeId = employeeId,
+                Schedule = schedule
+            };
+
+            schedule.EmployeeSchedules.Add(employeeSchedule);
+            Schedules.Add(schedule);
+            Context.SaveChanges();
+        }
+        public void DeleteSchedule(DateTime date, int employeeId)
+        {
+            var employeeSchedule = Context.Set<EmployeeSchedule>()
+                .Include(es => es.Schedule)
+                .FirstOrDefault(es => es.Schedule.Date == date && es.EmployeeId == employeeId);
+
+            if (employeeSchedule != null)
+            {
+                Context.Set<EmployeeSchedule>().Remove(employeeSchedule);
+                Context.SaveChanges();
+            }
+        }
+
         public void Dispose()
         {
             Context.Dispose();
