@@ -1,16 +1,12 @@
-﻿using BusinessLogicLayer.Services;
-using HotelManagement.Entities;
+﻿using System.Linq;
 using System;
-using System.Diagnostics;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using BusinessLogicLayer.Services;
+using HotelManagement.Entities;
 
 namespace PresentationLayer.Forms
 {
-    /// <summary>
-    /// Interaction logic for ucAddEmployee.xaml
-    /// </summary>
     public partial class ucAddEmployee : UserControl
     {
         private EmployeeService employeeService;
@@ -39,6 +35,9 @@ namespace PresentationLayer.Forms
                 RoleComboBox.SelectedItem = RoleComboBox.Items
                     .Cast<ComboBoxItem>()
                     .FirstOrDefault(item => item.Content.ToString() == GetRoleNameById(employee.RoleId));
+                UsernameTextBox.Text = employee.Username;
+                UsernameTextBox.IsEnabled = false; // Disable editing username on update
+                PasswordBox.Password = string.Empty; // Clear password field for security
             }
         }
 
@@ -50,8 +49,9 @@ namespace PresentationLayer.Forms
                 string lastName = LastNameTextBox.Text;
                 string email = EmailTextBox.Text;
                 string phoneNumber = PhoneNumberTextBox.Text;
+                string username = UsernameTextBox.Text;
+                string password = PasswordBox.Password;
                 string roleName = (RoleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
-
                 int roleId = GetRoleIdByName(roleName);
 
                 if (currentEmployee == null)
@@ -67,13 +67,26 @@ namespace PresentationLayer.Forms
 
                 if (currentEmployee.Id == 0)
                 {
-                    Debug.WriteLine($"Adding employee: {firstName} {lastName}, RoleId: {roleId}");
-                    employeeService.AddEmployee(currentEmployee);
+                    if (string.IsNullOrWhiteSpace(password))
+                    {
+                        MessageBox.Show("Password is required for new employees.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+
+                    employeeService.AddEmployee(username, password, firstName, lastName, email, phoneNumber, roleId);
                 }
                 else
                 {
-                    Debug.WriteLine($"Updating employee: {firstName} {lastName}, RoleId: {roleId}");
-                    employeeService.UpdateEmployee(currentEmployee);
+                    if (!string.IsNullOrWhiteSpace(password))
+                    {
+                        // If password is provided, update the hash and salt
+                        employeeService.AddEmployee(username, password, firstName, lastName, email, phoneNumber, roleId);
+                    }
+                    else
+                    {
+                        // Only update other fields
+                        employeeService.UpdateEmployee(currentEmployee);
+                    }
                 }
 
                 MessageBox.Show("Employee saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);

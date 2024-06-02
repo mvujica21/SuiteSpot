@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,14 @@ namespace DataAccessLayer.Repositories
         public IQueryable<Room> GetRooms()
         {
             return Context.Room.AsQueryable();
+        }
+        public Room GetRoomById(int id)
+        {
+            return Rooms.Find(id);
+        }
+        public List<Room> GetRoomsByCapacity(int numberOfGuests)
+        {
+            return Rooms.Where(r => r.maxxCapacity >= numberOfGuests).ToList();
         }
         public bool AddRoom(Room room)
         {

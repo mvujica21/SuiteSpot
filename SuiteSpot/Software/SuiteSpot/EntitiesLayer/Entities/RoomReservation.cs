@@ -19,6 +19,8 @@ namespace HotelManagement.Entities
         public int GuestId { get; set; }
         public Guest Guest { get; set; }
 
+        public int NumberOfGuests { get; set; }
+
         public ICollection<Bill> Bills { get; set; }
     }
 }

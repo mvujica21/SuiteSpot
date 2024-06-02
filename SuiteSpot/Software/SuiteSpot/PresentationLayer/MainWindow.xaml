@@ -8,7 +8,7 @@
         Title="MainWindow" Height="600" Width="800">
     <DockPanel Background="LightSkyBlue">
         <StackPanel DockPanel.Dock="Left" Width="125" Background="AliceBlue" x:Name="navBar">
-            <Button Content="Login" Height="60" x:Name="btnLogin"/>
+            <Button Content="Login" Height="60" x:Name="btnLogin" Click="btnLogin_Click"/>
             <Button Content="Room reservation" Height="60" x:Name="btnRoomReservation" Click="btnRoomReservation_Click"/>
             <Button Content="Room managment"  Height="60" Click="btnRoomManagment_Click" x:Name="btnRoomManagment"/>
             <Button Content="Manage employees"  Height="60" x:Name="btnManageEmployees" Click="btnManageEmployees_Click"/>

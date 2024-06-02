@@ -62,5 +62,11 @@ namespace PresentationLayer
         {
             contentControl.Content = new ucManageWorkSchedule();
         }
+
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        {
+            contentControl.Content = new ucLogin();
+
+        }
     }
 }

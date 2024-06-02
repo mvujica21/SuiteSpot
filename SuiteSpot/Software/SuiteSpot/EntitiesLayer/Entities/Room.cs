@@ -14,7 +14,6 @@ namespace HotelManagement.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public int Number { get; set; }
-        public bool Reserved { get; set; }
 
         public ICollection<Review> Reviews { get; set; }
         public ICollection<RoomReservation> RoomReservations { get; set; }

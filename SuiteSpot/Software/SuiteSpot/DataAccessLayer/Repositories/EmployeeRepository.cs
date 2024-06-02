@@ -90,6 +90,10 @@ namespace DataAccessLayer.Repositories
                 return false;
             }
         }
+        public Employee GetEmployeeByUsername(string username)
+        {
+            return Context.Employees.FirstOrDefault(e => e.Username == username);
+        }
         public void Dispose()
         {
             Context.Dispose();

@@ -143,6 +143,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\ucLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\ucManageEmployees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -192,6 +196,9 @@
     </Compile>
     <Compile Include="Forms\ucAddRoom.xaml.cs">
       <DependentUpon>ucAddRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucLogin.xaml.cs">
+      <DependentUpon>ucLogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ucManageEmployees.xaml.cs">
       <DependentUpon>ucManageEmployees.xaml</DependentUpon>
