@@ -41,5 +41,12 @@ namespace BusinessLogicLayer.Services
             }
         }
 
+        public async Task<List<Room>> GetAvailableRooms(DateTime checkInDate, DateTime checkOutDate, int roomCount, int guestCount)
+        {
+            using (var roomsRepository = new RoomRepository())
+            {
+                return await roomsRepository.GetAvailableRooms(checkInDate, checkOutDate, roomCount, guestCount);
+            }
+        }
     }
 }

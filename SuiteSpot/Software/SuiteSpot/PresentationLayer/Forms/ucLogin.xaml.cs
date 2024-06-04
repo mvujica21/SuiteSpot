@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using BusinessLogicLayer.Services;
+using HotelManagement.Entities;
 
 namespace PresentationLayer.Forms
 {
@@ -19,10 +20,11 @@ namespace PresentationLayer.Forms
             var username = txtUsername.Text;
             var password = txtPassword.Password;
 
-            if (employeeService.ValidateCredentials(username, password))
+            var employee = employeeService.ValidateCredentials(username, password);
+            if (employee != null)
             {
-                MessageBox.Show("Login successful!");
-                // Proceed to the next step, such as opening the main application window
+                SessionManager.EmployeeId = employee.Id;
+                MessageBox.Show("Login successful!");          
             }
             else
             {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,10 @@ namespace DataAccessLayer.Repositories
         public IQueryable<Facility> GetFacilities()
         {
             return Context.Facilities.AsQueryable();
+        }
+        public async Task<List<Facility>> GetFacilitiesAsync()
+        {
+            return await Facilities.ToListAsync();
         }
         public bool AddFacilities(Facility facility)
         {

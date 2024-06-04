@@ -101,5 +101,30 @@ namespace DataAccessLayer.Repositories
         {
             Context.Dispose();
         }
+        
+        public async Task<List<Room>> GetAvailableRooms(DateTime checkInDate, DateTime checkOutDate, int roomCount, int guestCount)
+        {
+            var availableRooms = await Rooms
+                .Where(r => r.maxxCapacity >= guestCount)
+                .ToListAsync();
+
+            var bookedRooms = await Context.RoomReservations
+                .Where(b => (b.StartDate >= checkInDate && b.EndDate <= checkOutDate) ||
+                            (b.StartDate >= checkInDate && b.EndDate <= checkOutDate) ||
+                            (b.StartDate <= checkInDate && b.EndDate >= checkOutDate))
+                .Select(b => b.RoomId)
+                .ToListAsync();
+
+            var availableRoomsIds = availableRooms
+                .Where(r => !bookedRooms.Contains(r.Id))
+                .Select(r => r.Id)
+                .ToList();
+
+            var availableRoomsList = await Rooms
+                .Where(r => availableRoomsIds.Contains(r.Id))
+                .ToListAsync();
+
+            return availableRoomsList;
+        }
     }
 }

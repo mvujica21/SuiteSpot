@@ -20,17 +20,17 @@ namespace BusinessLogicLayer.Services
             }
         }
 
-        public bool ValidateCredentials(string username, string password)
+        public Employee ValidateCredentials(string username, string password)
         {
             using (var employeeRepository = new EmployeeRepository())
             {
                 var employee = employeeRepository.GetEmployeeByUsername(username);
-                if (employee != null)
+                if (employee != null && VerifyPassword(password, employee.PasswordHash, employee.PasswordSalt))
                 {
-                    return VerifyPassword(password, employee.PasswordHash, employee.PasswordSalt);
+                    return employee;
                 }
             }
-            return false;
+            return null;
         }
 
         public bool AddEmployee(string username, string password, string firstName, string lastName, string email, string phoneNumber, int roleId)

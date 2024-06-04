@@ -17,6 +17,13 @@ namespace BusinessLogicLayer.Services
                 return facilityRepository.GetFacilities().ToList();
             }
         }
+        public async Task<List<Facility>> GetFacilitiesAsync()
+        {
+            using (var facilityRepository = new FaciltiyRepository())
+            {
+                return await facilityRepository.GetFacilitiesAsync();
+            }
+        }
         public bool AddFacility(Facility facility)
         {
             using (var facilityRepository = new FaciltiyRepository())

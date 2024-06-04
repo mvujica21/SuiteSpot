@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HotelManagement.Entities
 {
@@ -10,7 +11,10 @@ namespace HotelManagement.Entities
         public decimal Price { get; set; }
         public string PaymentType { get; set; }
 
+
         public int RoomReservationId { get; set; }
+        [Column("room_reservation_id")]
+
         public RoomReservation RoomReservation { get; set; }
 
         public ICollection<FacilityBilling> FacilityBillings { get; set; }

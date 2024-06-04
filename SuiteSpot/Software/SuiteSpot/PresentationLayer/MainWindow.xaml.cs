@@ -1,4 +1,5 @@
-﻿using PresentationLayer.Forms;
+﻿using BusinessLogicLayer.Services;
+using PresentationLayer.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,11 +33,6 @@ namespace PresentationLayer
 
         }
 
-        private void btnDashboard_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnManageEmployees_Click(object sender, RoutedEventArgs e)
         {
             contentControl.Content = new ucManageEmployees();
@@ -66,6 +62,12 @@ namespace PresentationLayer
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             contentControl.Content = new ucLogin();
+
+        }
+
+        private void btnBills_Click(object sender, RoutedEventArgs e)
+        {
+            contentControl.Content = new ucBills();
 
         }
     }

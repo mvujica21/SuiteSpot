@@ -143,6 +143,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\ucAvailableRoomsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ucBills.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ucGuestEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\ucLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Forms\ucManageWorkSchedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\ucReservationDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -184,6 +200,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Forms\RelayCommand.cs" />
+    <Compile Include="Forms\SessionManager.cs" />
     <Compile Include="Forms\ShiftToColorConverter.cs" />
     <Compile Include="Forms\ucAddEmployee.xaml.cs">
       <DependentUpon>ucAddEmployee.xaml</DependentUpon>
@@ -196,6 +213,15 @@
     </Compile>
     <Compile Include="Forms\ucAddRoom.xaml.cs">
       <DependentUpon>ucAddRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucAvailableRoomsControl.xaml.cs">
+      <DependentUpon>ucAvailableRoomsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucBills.xaml.cs">
+      <DependentUpon>ucBills.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucGuestEntry.xaml.cs">
+      <DependentUpon>ucGuestEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ucLogin.xaml.cs">
       <DependentUpon>ucLogin.xaml</DependentUpon>
@@ -211,6 +237,9 @@
     </Compile>
     <Compile Include="Forms\ucManageWorkSchedule.xaml.cs">
       <DependentUpon>ucManageWorkSchedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ucReservationDetails.xaml.cs">
+      <DependentUpon>ucReservationDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ucRoomManagment.xaml.cs">
       <DependentUpon>ucRoomManagment.xaml</DependentUpon>

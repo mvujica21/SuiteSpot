@@ -12,7 +12,7 @@
             <Button Content="Room reservation" Height="60" x:Name="btnRoomReservation" Click="btnRoomReservation_Click"/>
             <Button Content="Room managment"  Height="60" Click="btnRoomManagment_Click" x:Name="btnRoomManagment"/>
             <Button Content="Manage employees"  Height="60" x:Name="btnManageEmployees" Click="btnManageEmployees_Click"/>
-            <Button Content="Dashboard"  Height="60" x:Name="btnDashboard" Click="btnDashboard_Click"/>
+            <Button Content="Bills"  Height="60" x:Name="btnBills" Click="btnBills_Click"/>
             <Button Content="Task managment" Height="60" x:Name="btnTaskManagment" Click="BtnTaskManagment_Click"/>
             <Button Content="Facilities" Height="60" x:Name="btnFacilities" Click="btnFacilities_Click"/>
             <Button Content="Work schedule" Height="60" x:Name="btnWorkSchedule" Click="btnWorkSchedule_Click"/>

@@ -112,10 +112,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HotelDbContext.cs" />
+    <Compile Include="Repositories\BillRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\FaciltiyRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
+    <Compile Include="Repositories\RoomReservationRepository.cs" />
     <Compile Include="Repositories\ScheduleRepository.cs" />
   </ItemGroup>
   <ItemGroup />

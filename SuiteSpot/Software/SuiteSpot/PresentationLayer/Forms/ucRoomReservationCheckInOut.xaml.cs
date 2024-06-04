@@ -1,27 +1,18 @@
-﻿using System;
+﻿using BusinessLogicLayer.Services;
+using HotelManagement.Entities;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PresentationLayer.Forms
 {
-    /// <summary>
-    /// Interaction logic for ucRoomReservationCheckInOut.xaml
-    /// </summary>
     public partial class ucRoomReservationCheckInOut : UserControl, INotifyPropertyChanged
     {
         public ObservableCollection<ReservationDay> Days { get; } = new ObservableCollection<ReservationDay>();
@@ -33,10 +24,19 @@ namespace PresentationLayer.Forms
 
         private DateTime? _checkInDate = null;
         private DateTime? _checkOutDate = null;
+        public int RoomCount { get; }
+        public int GuestCount { get; }
 
-        public ucRoomReservationCheckInOut()
+        private readonly RoomService _roomService;
+        private readonly RoomReservationService _reservationService;
+
+        public ucRoomReservationCheckInOut(RoomService roomService, RoomReservationService reservationService, int roomCount, int guestCount)
         {
             InitializeComponent();
+            _roomService = roomService;
+            _reservationService = reservationService;
+            RoomCount = roomCount;
+            GuestCount = guestCount;
             PopulateDays(_currentMonth);
             SelectDateRangeCommand = new RelayCommand(SelectDateRange);
             DataContext = this;
@@ -69,7 +69,6 @@ namespace PresentationLayer.Forms
             }
         }
 
-
         private void SelectDateRange(object parameter)
         {
             if (parameter is DateTime selectedDate)
@@ -98,7 +97,6 @@ namespace PresentationLayer.Forms
                 UpdateCalendarDays();
             }
         }
-
 
         private void UpdateCalendarDays()
         {
@@ -129,10 +127,35 @@ namespace PresentationLayer.Forms
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
+            var checkInOutControl = new ucRoomReservationCheckInOut(_roomService, _reservationService, RoomCount, GuestCount);
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.contentControl.Content = checkInOutControl;
         }
 
-        private void ProceedToConfirmation_Click(object sender, RoutedEventArgs e)
+        private async void ProceedToConfirmation_Click(object sender, RoutedEventArgs e)
         {
+            if (_checkInDate.HasValue && _checkOutDate.HasValue)
+            {
+                var availableRooms = await FetchAvailableRooms(_checkInDate.Value, _checkOutDate.Value, RoomCount, GuestCount);
+                DisplayAvailableRooms(availableRooms);
+            }
+        }
+
+        private Task<List<Room>> FetchAvailableRooms(DateTime checkInDate, DateTime checkOutDate, int roomCount, int guestCount)
+        {
+            return _roomService.GetAvailableRooms(checkInDate, checkOutDate, roomCount, guestCount);
+        }
+
+        private void DisplayAvailableRooms(List<Room> availableRooms)
+        {
+            var availableRoomsControl = new ucAvailableRoomsControl(availableRooms, RoomCount, GuestCount);
+            NavigateToAvailableRooms(availableRoomsControl);
+        }
+
+        private void NavigateToAvailableRooms(UserControl availableRoomsControl)
+        {
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.contentControl.Content = availableRoomsControl;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -185,7 +208,4 @@ namespace PresentationLayer.Forms
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
-
-
 }
