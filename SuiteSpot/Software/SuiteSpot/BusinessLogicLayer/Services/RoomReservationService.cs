@@ -1,9 +1,7 @@
 ﻿using DataAccessLayer.Repositories;
 using HotelManagement.Entities;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
 using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Services
@@ -17,7 +15,7 @@ namespace BusinessLogicLayer.Services
                 var existingGuest = await reservationRepository.GetGuestByEmailAsync(guest.Email);
                 if (existingGuest != null)
                 {
-                    guest = existingGuest; 
+                    guest = existingGuest;
                 }
                 else
                 {
@@ -54,6 +52,14 @@ namespace BusinessLogicLayer.Services
             using (var reservationRepository = new RoomReservationRepository())
             {
                 return await reservationRepository.GetUnfinishedRoomReservationsAsync();
+            }
+        }
+
+        public async Task UpdateRoomReservationAsync(RoomReservation reservation)
+        {
+            using (var reservationRepository = new RoomReservationRepository())
+            {
+                await reservationRepository.UpdateRoomReservationAsync(reservation);
             }
         }
     }

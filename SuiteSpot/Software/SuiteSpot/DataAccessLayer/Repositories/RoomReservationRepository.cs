@@ -104,5 +104,18 @@ namespace DataAccessLayer.Repositories
 
             return groupedReservations;
         }
+        public async Task UpdateRoomReservationAsync(RoomReservation reservation)
+        {
+            try
+            {
+                Context.Entry(reservation).State = EntityState.Modified;
+                await Context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error updating room reservation: {ex.Message}");
+                throw;
+            }
+        }
+        }
     }
-}

@@ -1,0 +1,17 @@
+﻿<Window x:Class="PresentationLayer.Forms.SelectAmenityWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Select Amenity" Height="200" Width="400">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Select Amenity" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
+            <ComboBox x:Name="AmenityComboBox" DisplayMemberPath="Name" Margin="0,0,0,10"/>
+            <TextBlock Text="Amount" FontWeight="Bold"/>
+            <TextBox x:Name="AmountTextBox" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <Button Content="OK" Width="75" Margin="5" Click="Ok_Click"/>
+                <Button Content="Cancel" Width="75" Margin="5" Click="Cancel_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

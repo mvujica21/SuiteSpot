@@ -27,6 +27,11 @@ namespace DataAccessLayer.Repositories
         {
             return await Facilities.ToListAsync();
         }
+        public async Task<List<Facility>> GetAvailableFacilitiesAsync()
+        {
+            return await Facilities.ToListAsync();
+        }
+
         public bool AddFacilities(Facility facility)
         {
             try

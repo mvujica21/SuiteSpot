@@ -47,5 +47,12 @@ namespace BusinessLogicLayer.Services
                 return facilityRepository.DeleteFacility(facility);
             }
         }
+        public async Task<List<Facility>> GetAvailableAmenitiesAsync()
+        {
+            using (var facilityRepository = new FaciltiyRepository())
+            {
+                return await facilityRepository.GetAvailableFacilitiesAsync();
+            }
+        }
     }
 }

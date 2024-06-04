@@ -1,6 +1,7 @@
 ﻿using HotelManagement.Entities;
 using System;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
@@ -29,6 +30,24 @@ namespace DataAccessLayer.Repositories
                 }
             }
 
+            await _context.SaveChangesAsync();
+        }
+        public async Task<Bill> GetBillByRoomReservationIdAsync(int roomReservationId)
+        {
+            return await _context.Bills
+                .Include(b => b.FacilityBillings.Select(fb => fb.Facility))
+                .FirstOrDefaultAsync(b => b.RoomReservationId == roomReservationId);
+        }
+
+        public async Task AddBillAsync(Bill bill)
+        {
+            _context.Bills.Add(bill);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateBillAsync(Bill bill)
+        {
+            _context.Entry(bill).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 

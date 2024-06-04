@@ -29,9 +29,9 @@ namespace PresentationLayer.Forms
         {
             if (RoomReservationsListView.SelectedItem is RoomReservation selectedReservation)
             {
-                var reservationDetailsControl = new ucReservationDetails(selectedReservation);
+                var billDetailsControl = new ucBillDetails(selectedReservation);
                 var mainWindow = (MainWindow)Application.Current.MainWindow;
-                mainWindow.contentControl.Content = reservationDetailsControl;
+                mainWindow.contentControl.Content = billDetailsControl;
             }
             else
             {
