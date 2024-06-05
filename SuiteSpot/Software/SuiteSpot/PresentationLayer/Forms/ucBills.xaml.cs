@@ -1,8 +1,5 @@
 ﻿using HotelManagement.Entities;
 using BusinessLogicLayer.Services;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -10,32 +7,54 @@ namespace PresentationLayer.Forms
 {
     public partial class ucBills : UserControl
     {
-        private readonly RoomReservationService _reservationService;
+        private readonly BillService _billService;
 
         public ucBills()
         {
             InitializeComponent();
-            _reservationService = new RoomReservationService();
-            LoadRoomReservations();
+            _billService = new BillService();
+            LoadBills();
         }
 
-        private async void LoadRoomReservations()
+        private async void LoadBills()
         {
-            var roomReservations = await _reservationService.GetUnfinishedRoomReservationsAsync();
-            RoomReservationsListView.ItemsSource = roomReservations;
+            var activeBills = await _billService.GetActiveBillsAsync();
+            BillsDataGrid.ItemsSource = activeBills;
         }
 
-        private void ViewDetails_Click(object sender, RoutedEventArgs e)
+        private async void AddBill_Click(object sender, RoutedEventArgs e)
         {
-            if (RoomReservationsListView.SelectedItem is RoomReservation selectedReservation)
+            var newBill = await _billService.CreateBillAsync();
+            var billDetailsControl = new ucBillDetails(newBill);
+            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            mainWindow.contentControl.Content = billDetailsControl;
+        }
+
+        private void ModifyBill_Click(object sender, RoutedEventArgs e)
+        {
+            if (BillsDataGrid.SelectedItem is Bill selectedBill)
             {
-                var billDetailsControl = new ucBillDetails(selectedReservation);
+                var billDetailsControl = new ucBillDetails(selectedBill);
                 var mainWindow = (MainWindow)Application.Current.MainWindow;
                 mainWindow.contentControl.Content = billDetailsControl;
             }
             else
             {
-                MessageBox.Show("Please select a room reservation before proceeding.");
+                MessageBox.Show("Please select a bill before proceeding.");
+            }
+        }
+
+        private async void DeleteBill_Click(object sender, RoutedEventArgs e)
+        {
+            if (BillsDataGrid.SelectedItem is Bill selectedBill)
+            {
+                selectedBill.Status = "Deleted";
+                await _billService.FinalizeBillAsync(selectedBill);
+                LoadBills();
+            }
+            else
+            {
+                MessageBox.Show("Please select a bill before proceeding.");
             }
         }
     }

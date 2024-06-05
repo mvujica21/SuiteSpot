@@ -10,50 +10,74 @@ namespace PresentationLayer.Forms
 {
     public partial class ucBillDetails : UserControl
     {
-        private RoomReservation _selectedReservation;
-        private Bill _bill;
+        private Bill _selectedBill;
         private List<Facility> _availableAmenities;
-        private readonly RoomReservationService _reservationService;
         private readonly BillService _billService;
         private readonly FacilityService _facilityService;
+        private readonly RoomReservationService _reservationService;
 
-        public ucBillDetails(RoomReservation selectedReservation)
+        public ucBillDetails(Bill selectedBill)
         {
             InitializeComponent();
-            _selectedReservation = selectedReservation;
-            _reservationService = new RoomReservationService();
+            _selectedBill = selectedBill;
             _billService = new BillService();
             _facilityService = new FacilityService();
-            InitializeBill();
+            _reservationService = new RoomReservationService();
+            LoadBillDetails();
             LoadAmenities();
-            LoadReservationDetails();
         }
 
-        private async void InitializeBill()
+        private async void LoadBillDetails()
         {
-            _bill = await _billService.GetOrCreateBillAsync(_selectedReservation.Id);
-            if (_bill.FacilityBillings == null)
+            BillIdTextBlock.Text = _selectedBill.Id.ToString();
+            DateTextBlock.Text = _selectedBill.Date.ToString("g");
+
+            if (_selectedBill.RoomReservationId.HasValue && _selectedBill.RoomReservationId.Value != 0)
             {
-                _bill.FacilityBillings = new List<FacilityBilling>();
+                var roomReservation = await _reservationService.GetRoomReservationAsync(_selectedBill.RoomReservationId.Value);
+                RoomReservationsListView.ItemsSource = new List<RoomReservation> { roomReservation };
             }
+            else
+            {
+                RoomReservationsListView.ItemsSource = new List<RoomReservation>();
+            }
+
+            var facilityBillings = await _billService.GetFacilityBillingsByBillIdAsync(_selectedBill.Id);
+            _selectedBill.FacilityBillings = facilityBillings;
+
+            AmenitiesListView.ItemsSource = _selectedBill.FacilityBillings.Select(fb => new
+            {
+                fb.Facility.Name,
+                fb.Amount,
+                fb.Facility.Price
+            }).ToList();
+
             UpdateTotalPrice();
         }
+
+
+
 
         private async void LoadAmenities()
         {
             _availableAmenities = await _facilityService.GetAvailableAmenitiesAsync();
         }
 
-        private void LoadReservationDetails()
+        private async void AddRoomReservation_Click(object sender, RoutedEventArgs e)
         {
-            RoomNumberTextBlock.Text = _selectedReservation.Room.Number.ToString();
-            GuestNameTextBlock.Text = $"{_selectedReservation.Guest.FirstName} {_selectedReservation.Guest.LastName}";
-            StartDateTextBlock.Text = _selectedReservation.StartDate.ToShortDateString();
-            EndDateTextBlock.Text = _selectedReservation.EndDate.ToShortDateString();
-            AmenitiesListView.ItemsSource = _bill.FacilityBillings.Select(fb => fb.Facility).ToList();
+            var selectRoomReservationWindow = new SelectRoomReservationWindow();
+            if (selectRoomReservationWindow.ShowDialog() == true)
+            {
+                var selectedRoomReservation = selectRoomReservationWindow.SelectedRoomReservation;
+                _selectedBill.RoomReservationId = selectedRoomReservation.Id;
+                await _reservationService.UpdateRoomReservationAsync(selectedRoomReservation);
+
+                // Refresh the details
+                LoadBillDetails();
+            }
         }
 
-        private void AddAmenity_Click(object sender, RoutedEventArgs e)
+        private async void AddAmenity_Click(object sender, RoutedEventArgs e)
         {
             var selectAmenityWindow = new SelectAmenityWindow(_availableAmenities);
             if (selectAmenityWindow.ShowDialog() == true)
@@ -66,33 +90,50 @@ namespace PresentationLayer.Forms
                     FacilityId = selectedAmenity.Id,
                     Facility = selectedAmenity,
                     Amount = amount,
-                    BillId = _bill.Id,
-                    Bill = _bill
+                    BillId = _selectedBill.Id,
+                    Bill = _selectedBill
                 };
 
-                _bill.FacilityBillings.Add(facilityBilling);
+                if (_selectedBill.FacilityBillings == null)
+                {
+                    _selectedBill.FacilityBillings = new List<FacilityBilling>();
+                }
+
+                _selectedBill.FacilityBillings.Add(facilityBilling);
+                await _billService.SaveFacilityBillingAsync(facilityBilling);
                 UpdateTotalPrice();
-                LoadReservationDetails();
+                LoadBillDetails();
             }
         }
 
         private async void FinalizeBill_Click(object sender, RoutedEventArgs e)
         {
-            _bill.Price = _bill.FacilityBillings.Sum(fb => fb.Facility.Price * fb.Amount);
-            await _billService.FinalizeBillAsync(_bill);
-            _selectedReservation.Status = "Finished";
-            await _reservationService.UpdateRoomReservationAsync(_selectedReservation);
+            _selectedBill.Price = _selectedBill.FacilityBillings.Sum(fb => fb.Facility.Price * fb.Amount);
+            await _billService.FinalizeBillAsync(_selectedBill);
+            if (_selectedBill.RoomReservationId.HasValue && _selectedBill.RoomReservationId.Value != 0)
+            {
+                var roomReservation = await _reservationService.GetRoomReservationAsync(_selectedBill.RoomReservationId.Value);
+                roomReservation.Status = "Finished";
+                await _reservationService.UpdateRoomReservationAsync(roomReservation);
+            }
 
-            MessageBox.Show("Bill finalized and room reservation completed.");
+            MessageBox.Show("Bill finalized.");
             var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow.contentControl.Content = new ucBills(); // Navigate back to the bills overview
+            mainWindow.contentControl.Content = new ucBills();
         }
 
         private void UpdateTotalPrice()
         {
-            var totalPrice = _bill.FacilityBillings.Sum(fb => fb.Facility.Price * fb.Amount);
+            var totalPrice = 0m;
+
+            if (_selectedBill.FacilityBillings != null)
+            {
+                totalPrice = _selectedBill.FacilityBillings.Sum(fb => fb.Facility.Price * fb.Amount);
+            }
+
             TotalPriceTextBlock.Text = totalPrice.ToString("C");
         }
+
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {

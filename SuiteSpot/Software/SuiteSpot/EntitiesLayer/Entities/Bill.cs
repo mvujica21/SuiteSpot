@@ -9,10 +9,11 @@ namespace HotelManagement.Entities
         public int Id { get; set; }
         public DateTime Date { get; set; }
         public decimal Price { get; set; }
-        public string PaymentType { get; set; }
+        public string Status { get; set; }
 
+        [Column("room_reservation_id")]
 
-        public int RoomReservationId { get; set; }
+        public int? RoomReservationId { get; set; }
         [Column("room_reservation_id")]
 
         public RoomReservation RoomReservation { get; set; }

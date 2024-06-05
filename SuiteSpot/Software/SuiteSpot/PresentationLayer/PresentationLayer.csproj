@@ -131,6 +131,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\SelectRoomReservationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\ucAddEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -183,10 +187,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Forms\ucReservationDetails.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Forms\ucRoomManagment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -210,6 +210,9 @@
     <Compile Include="Forms\RelayCommand.cs" />
     <Compile Include="Forms\SelectAmenityWindow.xaml.cs">
       <DependentUpon>SelectAmenityWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectRoomReservationWindow.xaml.cs">
+      <DependentUpon>SelectRoomReservationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\SessionManager.cs" />
     <Compile Include="Forms\ShiftToColorConverter.cs" />
@@ -251,9 +254,6 @@
     </Compile>
     <Compile Include="Forms\ucManageWorkSchedule.xaml.cs">
       <DependentUpon>ucManageWorkSchedule.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\ucReservationDetails.xaml.cs">
-      <DependentUpon>ucReservationDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\ucRoomManagment.xaml.cs">
       <DependentUpon>ucRoomManagment.xaml</DependentUpon>

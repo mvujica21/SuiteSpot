@@ -42,6 +42,10 @@ namespace DataAccessLayer
                 .ToTable("employee_schedule")
                 .HasKey(es => es.Id);
 
+            modelBuilder.Entity<FacilityBilling>()
+              .ToTable("facility_billing")
+              .HasKey(es => es.Id);
+
             modelBuilder.Entity<Employee>()
                 .ToTable("employee")
                 .HasKey(e => e.Id);

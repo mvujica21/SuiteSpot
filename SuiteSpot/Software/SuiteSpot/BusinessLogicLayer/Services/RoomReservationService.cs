@@ -31,7 +31,7 @@ namespace BusinessLogicLayer.Services
                     StartDate = startDate,
                     EndDate = endDate,
                     Status = "Pending",
-                    NumberOfGuests = 1 // Adjust as necessary
+                    NumberOfGuests = 1 
                 };
 
                 await reservationRepository.AddRoomReservationAsync(roomReservation);
@@ -55,11 +55,11 @@ namespace BusinessLogicLayer.Services
             }
         }
 
-        public async Task UpdateRoomReservationAsync(RoomReservation reservation)
+        public async Task UpdateRoomReservationAsync(RoomReservation roomReservation)
         {
             using (var reservationRepository = new RoomReservationRepository())
             {
-                await reservationRepository.UpdateRoomReservationAsync(reservation);
+                await reservationRepository.UpdateRoomReservationAsync(roomReservation);
             }
         }
     }
