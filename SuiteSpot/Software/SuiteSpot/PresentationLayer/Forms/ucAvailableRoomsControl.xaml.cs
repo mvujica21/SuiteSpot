@@ -3,6 +3,7 @@ using BusinessLogicLayer.Services;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System;
 
 namespace PresentationLayer.Forms
 {
@@ -10,23 +11,23 @@ namespace PresentationLayer.Forms
     {
         private int _roomCount;
         private int _guestCount;
-        private readonly RoomService _roomService;
-        private readonly RoomReservationService _reservationService;
+        private DateTime _checkInDate;
+        private DateTime _checkOutDate;
 
-        public ucAvailableRoomsControl(List<Room> availableRooms, int roomCount, int guestCount)
+        public ucAvailableRoomsControl(List<Room> availableRooms, int roomCount, int guestCount, DateTime checkInDate, DateTime checkOutDate)
         {
             InitializeComponent();
             AvailableRoomsListView.ItemsSource = availableRooms;
             _roomCount = roomCount;
             _guestCount = guestCount;
-            _roomService = new RoomService(); // Instantiate service here
-            _reservationService = new RoomReservationService(); // Instantiate service here
+            _checkInDate = checkInDate;
+            _checkOutDate = checkOutDate;
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = (MainWindow)Application.Current.MainWindow;
-            var checkInOutControl = new ucRoomReservationCheckInOut(_roomService, _reservationService, _roomCount, _guestCount);
+            var checkInOutControl = new ucRoomReservationCheckInOut(new RoomService(), new RoomReservationService(), _roomCount, _guestCount, _checkInDate, _checkOutDate);
             mainWindow.contentControl.Content = checkInOutControl;
         }
 
@@ -34,7 +35,7 @@ namespace PresentationLayer.Forms
         {
             if (AvailableRoomsListView.SelectedItem is Room selectedRoom)
             {
-                var guestEntryControl = new ucGuestEntry(selectedRoom, _guestCount);
+                var guestEntryControl = new ucGuestEntry(selectedRoom, _guestCount, _checkInDate, _checkOutDate);
                 var mainWindow = (MainWindow)Application.Current.MainWindow;
                 mainWindow.contentControl.Content = guestEntryControl;
             }

@@ -30,13 +30,15 @@ namespace PresentationLayer.Forms
         private readonly RoomService _roomService;
         private readonly RoomReservationService _reservationService;
 
-        public ucRoomReservationCheckInOut(RoomService roomService, RoomReservationService reservationService, int roomCount, int guestCount)
+        public ucRoomReservationCheckInOut(RoomService roomService, RoomReservationService reservationService, int roomCount, int guestCount, DateTime? checkInDate = null, DateTime? checkOutDate = null)
         {
             InitializeComponent();
             _roomService = roomService;
             _reservationService = reservationService;
             RoomCount = roomCount;
             GuestCount = guestCount;
+            _checkInDate = checkInDate;
+            _checkOutDate = checkOutDate;
             PopulateDays(_currentMonth);
             SelectDateRangeCommand = new RelayCommand(SelectDateRange);
             DataContext = this;
@@ -127,8 +129,8 @@ namespace PresentationLayer.Forms
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            var checkInOutControl = new ucRoomReservationCheckInOut(_roomService, _reservationService, RoomCount, GuestCount);
             var mainWindow = (MainWindow)Application.Current.MainWindow;
+            var checkInOutControl = new ucRoomReservationCheckInOut(_roomService, _reservationService, RoomCount, GuestCount, _checkInDate, _checkOutDate);
             mainWindow.contentControl.Content = checkInOutControl;
         }
 
@@ -137,7 +139,7 @@ namespace PresentationLayer.Forms
             if (_checkInDate.HasValue && _checkOutDate.HasValue)
             {
                 var availableRooms = await FetchAvailableRooms(_checkInDate.Value, _checkOutDate.Value, RoomCount, GuestCount);
-                DisplayAvailableRooms(availableRooms);
+                DisplayAvailableRooms(availableRooms, _checkInDate.Value, _checkOutDate.Value);
             }
         }
 
@@ -146,9 +148,9 @@ namespace PresentationLayer.Forms
             return _roomService.GetAvailableRooms(checkInDate, checkOutDate, roomCount, guestCount);
         }
 
-        private void DisplayAvailableRooms(List<Room> availableRooms)
+        private void DisplayAvailableRooms(List<Room> availableRooms, DateTime checkInDate, DateTime checkOutDate)
         {
-            var availableRoomsControl = new ucAvailableRoomsControl(availableRooms, RoomCount, GuestCount);
+            var availableRoomsControl = new ucAvailableRoomsControl(availableRooms, RoomCount, GuestCount, checkInDate, checkOutDate);
             NavigateToAvailableRooms(availableRoomsControl);
         }
 

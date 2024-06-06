@@ -13,20 +13,24 @@ namespace PresentationLayer.Forms
         private readonly RoomReservationService _reservationService;
         private readonly List<Guest> _guests = new List<Guest>();
         private readonly int _totalGuests;
+        private readonly DateTime _startDate;
+        private readonly DateTime _endDate;
 
-        public ucGuestEntry(Room selectedRoom, int totalGuests)
+        public ucGuestEntry(Room selectedRoom, int totalGuests, DateTime startDate, DateTime endDate)
         {
             InitializeComponent();
             _selectedRoom = selectedRoom;
             _reservationService = new RoomReservationService(); // Instantiate service here
             _totalGuests = totalGuests;
+            _startDate = startDate;
+            _endDate = endDate;
             UpdateGuestCounter();
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = (MainWindow)Application.Current.MainWindow;
-            var availableRoomsControl = new ucAvailableRoomsControl(new List<Room>(), 0, 0); // Pass actual values if needed
+            var availableRoomsControl = new ucAvailableRoomsControl(new List<Room>(), 0, 0, _startDate, _endDate); // Pass actual values if needed
             mainWindow.contentControl.Content = availableRoomsControl;
         }
 
@@ -49,13 +53,9 @@ namespace PresentationLayer.Forms
             }
             else
             {
-                // Assuming you have startDate and endDate from previous steps or another way
-                DateTime startDate = DateTime.Today; // Replace with actual start date
-                DateTime endDate = DateTime.Today.AddDays(1); // Replace with actual end date
-
                 foreach (var g in _guests)
                 {
-                    var roomReservation = await _reservationService.CreateRoomReservationAsync(_selectedRoom, g, startDate, endDate, SessionManager.EmployeeId);
+                    var roomReservation = await _reservationService.CreateRoomReservationAsync(_selectedRoom, g, _startDate, _endDate, SessionManager.EmployeeId);
                 }
 
                 MessageBox.Show("Guest information and room reservation saved successfully!");

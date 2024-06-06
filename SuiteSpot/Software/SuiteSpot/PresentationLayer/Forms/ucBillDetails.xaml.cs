@@ -55,26 +55,9 @@ namespace PresentationLayer.Forms
             UpdateTotalPrice();
         }
 
-
-
-
         private async void LoadAmenities()
         {
             _availableAmenities = await _facilityService.GetAvailableAmenitiesAsync();
-        }
-
-        private async void AddRoomReservation_Click(object sender, RoutedEventArgs e)
-        {
-            var selectRoomReservationWindow = new SelectRoomReservationWindow();
-            if (selectRoomReservationWindow.ShowDialog() == true)
-            {
-                var selectedRoomReservation = selectRoomReservationWindow.SelectedRoomReservation;
-                _selectedBill.RoomReservationId = selectedRoomReservation.Id;
-                await _reservationService.UpdateRoomReservationAsync(selectedRoomReservation);
-
-                // Refresh the details
-                LoadBillDetails();
-            }
         }
 
         private async void AddAmenity_Click(object sender, RoutedEventArgs e)
@@ -85,22 +68,33 @@ namespace PresentationLayer.Forms
                 var selectedAmenity = selectAmenityWindow.SelectedAmenity;
                 var amount = selectAmenityWindow.Amount;
 
-                var facilityBilling = new FacilityBilling
-                {
-                    FacilityId = selectedAmenity.Id,
-                    Facility = selectedAmenity,
-                    Amount = amount,
-                    BillId = _selectedBill.Id,
-                    Bill = _selectedBill
-                };
+                var existingFacilityBilling = _selectedBill.FacilityBillings
+                    .FirstOrDefault(fb => fb.FacilityId == selectedAmenity.Id);
 
-                if (_selectedBill.FacilityBillings == null)
+                if (existingFacilityBilling != null)
                 {
-                    _selectedBill.FacilityBillings = new List<FacilityBilling>();
+                    existingFacilityBilling.Amount += amount;
+                }
+                else
+                {
+                    var facilityBilling = new FacilityBilling
+                    {
+                        FacilityId = selectedAmenity.Id,
+                        Facility = selectedAmenity,
+                        Amount = amount,
+                        BillId = _selectedBill.Id,
+                        Bill = _selectedBill
+                    };
+
+                    if (_selectedBill.FacilityBillings == null)
+                    {
+                        _selectedBill.FacilityBillings = new List<FacilityBilling>();
+                    }
+
+                    _selectedBill.FacilityBillings.Add(facilityBilling);
+                    await _billService.SaveFacilityBillingAsync(facilityBilling);
                 }
 
-                _selectedBill.FacilityBillings.Add(facilityBilling);
-                await _billService.SaveFacilityBillingAsync(facilityBilling);
                 UpdateTotalPrice();
                 LoadBillDetails();
             }
@@ -134,11 +128,22 @@ namespace PresentationLayer.Forms
             TotalPriceTextBlock.Text = totalPrice.ToString("C");
         }
 
-
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             var mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.contentControl.Content = new ucBills();
+        }
+        private async void AddRoomReservation_Click(object sender, RoutedEventArgs e)
+        {
+            var selectRoomReservationWindow = new SelectRoomReservationWindow();
+            if (selectRoomReservationWindow.ShowDialog() == true)
+            {
+                var selectedRoomReservation = selectRoomReservationWindow.SelectedRoomReservation;
+                _selectedBill.RoomReservationId = selectedRoomReservation.Id;
+                await _reservationService.UpdateRoomReservationAsync(selectedRoomReservation);
+
+                LoadBillDetails();
+            }
         }
     }
 }
