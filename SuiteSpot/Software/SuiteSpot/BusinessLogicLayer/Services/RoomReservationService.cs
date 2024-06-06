@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Repositories;
+using EntitiesLayer.Entities;
 using HotelManagement.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,33 +9,44 @@ namespace BusinessLogicLayer.Services
 {
     public class RoomReservationService
     {
-        public async Task<RoomReservation> CreateRoomReservationAsync(Room room, Guest guest, DateTime startDate, DateTime endDate, int employeeId)
+        public async Task<RoomReservation> CreateRoomReservationAsync(Room room, List<Guest> guests, DateTime startDate, DateTime endDate, int employeeId)
         {
             using (var reservationRepository = new RoomReservationRepository())
             {
-                var existingGuest = await reservationRepository.GetGuestByEmailAsync(guest.Email);
-                if (existingGuest != null)
-                {
-                    guest = existingGuest;
-                }
-                else
-                {
-                    await reservationRepository.AddGuestAsync(guest);
-                }
-                reservationRepository.AttachRoom(room);
-
                 var roomReservation = new RoomReservation
                 {
                     RoomId = room.Id,
-                    GuestId = guest.Id,
-                    EmployeeId = employeeId,
                     StartDate = startDate,
                     EndDate = endDate,
                     Status = "Pending",
-                    NumberOfGuests = 1 
+                    EmployeeId = employeeId,
+                    NumberOfGuests = guests.Count,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
                 };
 
                 await reservationRepository.AddRoomReservationAsync(roomReservation);
+
+                foreach (var guest in guests)
+                {
+                    var existingGuest = await reservationRepository.GetGuestByEmailAsync(guest.Email);
+                    if (existingGuest != null)
+                    {
+                        guest.Id = existingGuest.Id; // Assign the ID of the existing guest
+                    }
+                    else
+                    {
+                        await reservationRepository.AddGuestAsync(guest);
+                    }
+
+                    var roomReservationGuest = new RoomReservationGuest
+                    {
+                        RoomReservationId = roomReservation.Id,
+                        GuestId = guest.Id
+                    };
+                    await reservationRepository.AddRoomReservationGuestAsync(roomReservationGuest);
+                }
+
                 return roomReservation;
             }
         }

@@ -1,4 +1,5 @@
-﻿using HotelManagement.Entities;
+﻿using EntitiesLayer.Entities;
+using HotelManagement.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -29,6 +30,8 @@ namespace DataAccessLayer
         public DbSet<ContactDetails> ContactDetails { get; set; }
         public DbSet<EventSpace> EventSpaces { get; set; }
         public DbSet<EventReservation> EventReservations { get; set; }
+        public DbSet<RoomReservationGuest> RoomReservationGuests { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

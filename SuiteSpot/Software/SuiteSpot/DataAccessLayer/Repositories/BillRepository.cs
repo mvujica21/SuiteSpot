@@ -1,9 +1,9 @@
-﻿using HotelManagement.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
+using HotelManagement.Entities;
 
 namespace DataAccessLayer.Repositories
 {
@@ -31,6 +31,11 @@ namespace DataAccessLayer.Repositories
         {
             _context.Entry(bill).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<Bill> GetBillByIdAsync(int billId)
+        {
+            return await _context.Bills.FindAsync(billId);
         }
 
         public async Task<List<FacilityBilling>> GetFacilityBillingsByBillIdAsync(int billId)

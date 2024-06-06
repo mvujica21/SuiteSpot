@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using EntitiesLayer.Entities;
+using System.Collections.Generic;
 
 namespace HotelManagement.Entities
 {
@@ -11,7 +12,7 @@ namespace HotelManagement.Entities
         public string PhoneNumber { get; set; }
 
         public ICollection<Review> Reviews { get; set; }
-        public ICollection<RoomReservation> RoomReservations { get; set; }
+        public ICollection<RoomReservationGuest> RoomReservationGuests { get; set; }
         public ICollection<EventReservation> EventReservations { get; set; }
     }
 }

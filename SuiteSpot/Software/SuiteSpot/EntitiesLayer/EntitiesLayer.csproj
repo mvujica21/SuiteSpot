@@ -57,6 +57,7 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Entities\RoomReservation.cs" />
+    <Compile Include="Entities\RoomReservationGuest.cs" />
     <Compile Include="Entities\Schedule.cs" />
     <Compile Include="Entities\Shift.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

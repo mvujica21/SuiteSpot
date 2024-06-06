@@ -74,6 +74,7 @@ namespace PresentationLayer.Forms
                 if (existingFacilityBilling != null)
                 {
                     existingFacilityBilling.Amount += amount;
+                    await _billService.SaveFacilityBillingAsync(existingFacilityBilling);
                 }
                 else
                 {
@@ -116,7 +117,7 @@ namespace PresentationLayer.Forms
             mainWindow.contentControl.Content = new ucBills();
         }
 
-        private void UpdateTotalPrice()
+        private async void UpdateTotalPrice()
         {
             var totalPrice = 0m;
 
@@ -125,7 +126,15 @@ namespace PresentationLayer.Forms
                 totalPrice = _selectedBill.FacilityBillings.Sum(fb => fb.Facility.Price * fb.Amount);
             }
 
+            if (_selectedBill.RoomReservationId.HasValue && _selectedBill.RoomReservationId.Value != 0)
+            {
+                var roomReservation = await _reservationService.GetRoomReservationAsync(_selectedBill.RoomReservationId.Value);
+                totalPrice += roomReservation.Room.Price;
+            }
+
             TotalPriceTextBlock.Text = totalPrice.ToString("C");
+            _selectedBill.Price = totalPrice;
+            await _billService.UpdateBillAsync(_selectedBill);
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
@@ -133,6 +142,7 @@ namespace PresentationLayer.Forms
             var mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.contentControl.Content = new ucBills();
         }
+
         private async void AddRoomReservation_Click(object sender, RoutedEventArgs e)
         {
             var selectRoomReservationWindow = new SelectRoomReservationWindow();

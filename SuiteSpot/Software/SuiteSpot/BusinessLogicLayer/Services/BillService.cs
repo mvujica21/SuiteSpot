@@ -23,7 +23,7 @@ namespace BusinessLogicLayer.Services
                 var bill = new Bill
                 {
                     Date = DateTime.Now,
-                    Price = 0, 
+                    Price = 0,
                     Status = "Active",
                     FacilityBillings = new List<FacilityBilling>()
                 };
@@ -62,6 +62,34 @@ namespace BusinessLogicLayer.Services
                 {
                     await billRepository.AddFacilityBillingAsync(facilityBilling);
                 }
+
+                var bill = await billRepository.GetBillByIdAsync(facilityBilling.BillId);
+                bill.Price = await CalculateTotalPrice(bill.Id);
+                await billRepository.UpdateBillAsync(bill);
+            }
+        }
+
+        private async Task<decimal> CalculateTotalPrice(int billId)
+        {
+            using (var billRepository = new BillRepository())
+            {
+                var facilityBillings = await billRepository.GetFacilityBillingsByBillIdAsync(billId);
+                decimal totalPrice = 0;
+
+                foreach (var fb in facilityBillings)
+                {
+                    totalPrice += fb.Facility.Price * fb.Amount;
+                }
+
+                return totalPrice;
+            }
+        }
+
+        public async Task UpdateBillAsync(Bill bill)
+        {
+            using (var billRepository = new BillRepository())
+            {
+                await billRepository.UpdateBillAsync(bill);
             }
         }
     }

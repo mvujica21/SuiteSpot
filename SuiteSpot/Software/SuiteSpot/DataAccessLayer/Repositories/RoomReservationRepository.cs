@@ -1,4 +1,5 @@
-﻿using HotelManagement.Entities;
+﻿using EntitiesLayer.Entities;
+using HotelManagement.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,12 +19,21 @@ namespace DataAccessLayer.Repositories
 
         public async Task<List<RoomReservation>> GetUnfinishedRoomReservationsAsync()
         {
-            return await _context.RoomReservations.Where(r => r.Status != "Finished").ToListAsync();
+            return await _context.RoomReservations
+                .Include(r => r.Room)
+                .Include(r => r.Employee)
+                .Include(r => r.RoomReservationGuests.Select(g => g.Guest))
+                .Where(r => r.Status != "Finished")
+                .ToListAsync();
         }
 
         public async Task<RoomReservation> GetRoomReservationAsync(int id)
         {
-            return await _context.RoomReservations.Include(r => r.Room).Include(r => r.Guest).FirstOrDefaultAsync(r => r.Id == id);
+            return await _context.RoomReservations
+                .Include(r => r.Room)
+                .Include(r => r.Employee)
+                .Include(r => r.RoomReservationGuests.Select(g => g.Guest))
+                .FirstOrDefaultAsync(r => r.Id == id);
         }
 
         public async Task AddRoomReservationAsync(RoomReservation reservation)
@@ -49,12 +59,10 @@ namespace DataAccessLayer.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public void AttachRoom(Room room)
+        public async Task AddRoomReservationGuestAsync(RoomReservationGuest roomReservationGuest)
         {
-            if (_context.Entry(room).State == EntityState.Detached)
-            {
-                _context.Room.Attach(room);
-            }
+            _context.RoomReservationGuests.Add(roomReservationGuest);
+            await _context.SaveChangesAsync();
         }
 
         public void Dispose()
