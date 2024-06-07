@@ -81,10 +81,8 @@ namespace PresentationLayer.Forms
                     var facilityBilling = new FacilityBilling
                     {
                         FacilityId = selectedAmenity.Id,
-                        Facility = selectedAmenity,
                         Amount = amount,
                         BillId = _selectedBill.Id,
-                        Bill = _selectedBill
                     };
 
                     if (_selectedBill.FacilityBillings == null)
@@ -104,6 +102,7 @@ namespace PresentationLayer.Forms
         private async void FinalizeBill_Click(object sender, RoutedEventArgs e)
         {
             _selectedBill.Price = _selectedBill.FacilityBillings.Sum(fb => fb.Facility.Price * fb.Amount);
+            _selectedBill.Status = "Finalized";
             await _billService.FinalizeBillAsync(_selectedBill);
             if (_selectedBill.RoomReservationId.HasValue && _selectedBill.RoomReservationId.Value != 0)
             {
@@ -123,7 +122,11 @@ namespace PresentationLayer.Forms
 
             if (_selectedBill.FacilityBillings != null)
             {
-                totalPrice = _selectedBill.FacilityBillings.Sum(fb => fb.Facility.Price * fb.Amount);
+                foreach (var fb in _selectedBill.FacilityBillings)
+                {
+                    var facility = await _facilityService.GetFacilityByIdAsync(fb.FacilityId);
+                    totalPrice += facility.Price * fb.Amount;
+                }
             }
 
             if (_selectedBill.RoomReservationId.HasValue && _selectedBill.RoomReservationId.Value != 0)
@@ -141,19 +144,6 @@ namespace PresentationLayer.Forms
         {
             var mainWindow = (MainWindow)Application.Current.MainWindow;
             mainWindow.contentControl.Content = new ucBills();
-        }
-
-        private async void AddRoomReservation_Click(object sender, RoutedEventArgs e)
-        {
-            var selectRoomReservationWindow = new SelectRoomReservationWindow();
-            if (selectRoomReservationWindow.ShowDialog() == true)
-            {
-                var selectedRoomReservation = selectRoomReservationWindow.SelectedRoomReservation;
-                _selectedBill.RoomReservationId = selectedRoomReservation.Id;
-                await _reservationService.UpdateRoomReservationAsync(selectedRoomReservation);
-
-                LoadBillDetails();
-            }
         }
     }
 }

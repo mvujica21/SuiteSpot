@@ -102,5 +102,10 @@ namespace DataAccessLayer.Repositories
         {
             Context.Dispose();
         }
+
+        public async Task<Facility> GetFacilityByIdAsync(int facilityId)
+        {
+            return await Facilities.FindAsync(facilityId);
+        }
     }
 }

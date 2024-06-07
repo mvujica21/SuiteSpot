@@ -26,7 +26,6 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button Content="Add Room Reservation" x:Name="AddRoomReservation" Click="AddRoomReservation_Click" Margin="0,0,0,10"/>
             <TextBlock Text="Amenities:" FontWeight="Bold"/>
             <ListView x:Name="AmenitiesListView" Margin="0,0,0,10">
                 <ListView.View>
