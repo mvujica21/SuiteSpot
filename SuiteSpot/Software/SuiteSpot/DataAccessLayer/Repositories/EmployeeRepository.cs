@@ -92,7 +92,7 @@ namespace DataAccessLayer.Repositories
         }
         public Employee GetEmployeeByUsername(string username)
         {
-            return Context.Employees.FirstOrDefault(e => e.Username == username);
+            return Context.Employees.Include(e => e.Role).FirstOrDefault(e => e.Username == username);
         }
         public void Dispose()
         {

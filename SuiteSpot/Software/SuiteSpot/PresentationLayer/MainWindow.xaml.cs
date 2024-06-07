@@ -1,19 +1,5 @@
-﻿using BusinessLogicLayer.Services;
-using PresentationLayer.Forms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PresentationLayer.Forms;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PresentationLayer
 {
@@ -25,12 +11,50 @@ namespace PresentationLayer
         public MainWindow()
         {
             InitializeComponent();
+
+            CheckUserRole(SessionManager.UserRole);
+        }
+
+        public void CheckUserRole(string userRole)
+        {
+            if (userRole == "Manager")
+            {
+                btnBills.Visibility = Visibility.Visible;
+                btnRoomReservation.Visibility = Visibility.Visible;
+                btnManageEmployees.Visibility = Visibility.Visible;
+                btnRoomManagment.Visibility = Visibility.Visible;
+                btnFacilities.Visibility = Visibility.Visible;
+                btnWorkSchedule.Visibility = Visibility.Visible;
+                btnLogout.Visibility = Visibility.Visible;
+                btnLogin.Visibility = Visibility.Collapsed;
+            }
+            else if (userRole == "Receptionist")
+            {
+                btnBills.Visibility = Visibility.Visible;
+                btnRoomReservation.Visibility = Visibility.Visible;
+                btnLogout.Visibility = Visibility.Visible;
+                btnManageEmployees.Visibility = Visibility.Collapsed;
+                btnRoomManagment.Visibility = Visibility.Collapsed;
+                btnFacilities.Visibility = Visibility.Collapsed;
+                btnWorkSchedule.Visibility = Visibility.Collapsed;
+                btnLogin.Visibility = Visibility.Collapsed;
+            }
+            else if (userRole == null)
+            {
+                btnBills.Visibility = Visibility.Collapsed;
+                btnRoomReservation.Visibility = Visibility.Collapsed;
+                btnManageEmployees.Visibility = Visibility.Collapsed;
+                btnRoomManagment.Visibility = Visibility.Collapsed;
+                btnFacilities.Visibility = Visibility.Collapsed;
+                btnWorkSchedule.Visibility = Visibility.Collapsed;
+                btnLogout.Visibility = Visibility.Collapsed;
+                btnLogin.Visibility = Visibility.Visible;
+            }
         }
 
         private void btnRoomReservation_Click(object sender, RoutedEventArgs e)
         {
             contentControl.Content = new ucRoomReservationNumGuests();
-
         }
 
         private void btnManageEmployees_Click(object sender, RoutedEventArgs e)
@@ -38,15 +62,10 @@ namespace PresentationLayer
             contentControl.Content = new ucManageEmployees();
         }
 
-        private void BtnTaskManagment_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
-        private void btnRoomManagment_Click(object sender, RoutedEventArgs e)
+        private void btnRoomManagement_Click(object sender, RoutedEventArgs e)
         {
             contentControl.Content = new ucRoomManagment();
-
         }
 
         private void btnFacilities_Click(object sender, RoutedEventArgs e)
@@ -62,13 +81,19 @@ namespace PresentationLayer
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             contentControl.Content = new ucLogin();
-
         }
 
         private void btnBills_Click(object sender, RoutedEventArgs e)
         {
             contentControl.Content = new ucBills();
+        }
 
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            SessionManager.EmployeeId = 0;
+            SessionManager.UserRole = null;
+            contentControl.Content = null;
+            CheckUserRole(SessionManager.UserRole);
         }
     }
 }

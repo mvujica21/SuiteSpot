@@ -24,7 +24,12 @@ namespace PresentationLayer.Forms
             if (employee != null)
             {
                 SessionManager.EmployeeId = employee.Id;
-                MessageBox.Show("Login successful!");          
+                SessionManager.UserRole = employee.Role.Name;
+                MessageBox.Show("Login successful!");
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                Window.GetWindow(this).Close();
+
             }
             else
             {
