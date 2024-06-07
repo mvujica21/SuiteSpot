@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using EntitiesLayer.Entities;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using EntitiesLayer.Entities;
 
 namespace HotelManagement.Entities
 {

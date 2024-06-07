@@ -1,8 +1,7 @@
-﻿using HotelManagement.Entities;
-using BusinessLogicLayer.Services;
+﻿using BusinessLogicLayer.Services;
+using HotelManagement.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 

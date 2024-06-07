@@ -1,5 +1,5 @@
-﻿using HotelManagement.Entities;
-using BusinessLogicLayer.Services;
+﻿using BusinessLogicLayer.Services;
+using HotelManagement.Entities;
 using System.Windows;
 using System.Windows.Controls;
 

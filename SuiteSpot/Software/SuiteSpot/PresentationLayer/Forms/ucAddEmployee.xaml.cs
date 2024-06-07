@@ -1,9 +1,9 @@
-﻿using System.Linq;
+﻿using BusinessLogicLayer.Services;
+using HotelManagement.Entities;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using BusinessLogicLayer.Services;
-using HotelManagement.Entities;
 
 namespace PresentationLayer.Forms
 {

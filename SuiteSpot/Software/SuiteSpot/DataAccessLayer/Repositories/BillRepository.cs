@@ -1,9 +1,9 @@
-﻿using System;
+﻿using HotelManagement.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using HotelManagement.Entities;
 
 namespace DataAccessLayer.Repositories
 {

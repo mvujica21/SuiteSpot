@@ -1,20 +1,9 @@
 ﻿using BusinessLogicLayer.Services;
 using HotelManagement.Entities;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PresentationLayer.Forms
 {
@@ -33,7 +22,7 @@ namespace PresentationLayer.Forms
         public ucAddRole(Role role) : this()
         {
             currentRole = role;
-            if(currentRole != null)
+            if (currentRole != null)
             {
                 txtRoleNmae.Text = role.Name;
             }
@@ -43,7 +32,7 @@ namespace PresentationLayer.Forms
             try
             {
                 string role = txtRoleNmae.Text;
-                
+
 
                 if (currentRole == null)
                 {
@@ -51,7 +40,7 @@ namespace PresentationLayer.Forms
                 }
 
                 currentRole.Name = role;
-               
+
 
                 if (currentRole.Id == 0)
                 {
@@ -59,7 +48,7 @@ namespace PresentationLayer.Forms
                     roleService.AddRole(currentRole);
                 }
                 else
-                { 
+                {
                     Debug.WriteLine($"Updating role: {Name}");
                     roleService.UpdateRole(currentRole);
                 }

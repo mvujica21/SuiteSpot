@@ -1,11 +1,8 @@
 ﻿using HotelManagement.Entities;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
@@ -70,7 +67,7 @@ namespace DataAccessLayer.Repositories
         {
             try
             {
-                Role currentRole= Roles.Find(role.Id);
+                Role currentRole = Roles.Find(role.Id);
                 if (currentRole != null)
                 {
                     Roles.Remove(currentRole);

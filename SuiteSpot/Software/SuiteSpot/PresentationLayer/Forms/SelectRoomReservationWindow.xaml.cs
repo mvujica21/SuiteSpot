@@ -1,6 +1,5 @@
-﻿using HotelManagement.Entities;
-using BusinessLogicLayer.Services;
-using System.Collections.Generic;
+﻿using BusinessLogicLayer.Services;
+using HotelManagement.Entities;
 using System.Windows;
 
 namespace PresentationLayer.Forms

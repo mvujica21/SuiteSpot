@@ -45,7 +45,7 @@ namespace PresentationLayer.Forms
 
         private void btnDeleteRole_Click(object sender, RoutedEventArgs e)
         {
-            Role selectedRole= dgRoles.SelectedItem as Role;
+            Role selectedRole = dgRoles.SelectedItem as Role;
             if (selectedRole != null)
             {
                 if (MessageBox.Show("Are you sure you want to delete this role?", "Delete?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
