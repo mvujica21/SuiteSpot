@@ -26,7 +26,7 @@ namespace PresentationLayer.Forms
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            var mainWindow = (Window.GetWindow(this) as MainWindow);
             var checkInOutControl = new ucRoomReservationCheckInOut(new RoomService(), new RoomReservationService(), _roomCount, _guestCount, _checkInDate, _checkOutDate);
             mainWindow.contentControl.Content = checkInOutControl;
         }

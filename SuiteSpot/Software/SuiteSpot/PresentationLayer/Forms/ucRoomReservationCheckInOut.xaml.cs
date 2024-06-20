@@ -129,9 +129,15 @@ namespace PresentationLayer.Forms
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
-            var checkInOutControl = new ucRoomReservationCheckInOut(_roomService, _reservationService, RoomCount, GuestCount, _checkInDate, _checkOutDate);
-            mainWindow.contentControl.Content = checkInOutControl;
+            var mainWindow = (Window.GetWindow(this) as MainWindow);
+            if (mainWindow != null)
+            {
+                mainWindow.contentControl.Content = new ucRoomReservationNumGuests();
+            }
+            else
+            {
+                Debug.WriteLine("Unable to find the main window.");
+            }
         }
 
         private async void ProceedToConfirmation_Click(object sender, RoutedEventArgs e)
@@ -156,8 +162,15 @@ namespace PresentationLayer.Forms
 
         private void NavigateToAvailableRooms(UserControl availableRoomsControl)
         {
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
-            mainWindow.contentControl.Content = availableRoomsControl;
+            var mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.contentControl.Content = availableRoomsControl;
+            }
+            else
+            {
+                Debug.WriteLine("Unable to find the main window.");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

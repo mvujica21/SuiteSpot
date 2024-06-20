@@ -9,8 +9,8 @@ namespace PresentationLayer.Forms
         public ucRoomReservationNumGuests()
         {
             InitializeComponent();
-            numRoomsComboBox.SelectedIndex = 0; // Default to 1 room
-            numGuestsComboBox.SelectedIndex = 0; // Default to 1 guest
+            numRoomsComboBox.SelectedIndex = 0; 
+            numGuestsComboBox.SelectedIndex = 0; 
         }
 
         public int SelectedRoomCount
@@ -21,7 +21,7 @@ namespace PresentationLayer.Forms
                 {
                     return int.Parse(item.Content.ToString());
                 }
-                return 1; // Default to 1 room if nothing is selected or in case of error
+                return 1; 
             }
         }
 
@@ -33,7 +33,7 @@ namespace PresentationLayer.Forms
                 {
                     return int.Parse(item.Content.ToString());
                 }
-                return 1; // Default to 1 guest if nothing is selected or in case of error
+                return 1;
             }
         }
 
