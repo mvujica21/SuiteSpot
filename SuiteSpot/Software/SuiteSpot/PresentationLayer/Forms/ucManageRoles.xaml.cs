@@ -11,7 +11,8 @@ namespace PresentationLayer.Forms
     /// </summary>
     public partial class ucManageRoles : UserControl
     {
-        public RoleService roleService;
+        private RoleService roleService;
+
         public ucManageRoles()
         {
             InitializeComponent();
@@ -21,13 +22,16 @@ namespace PresentationLayer.Forms
 
         private void loadRoles()
         {
-            List<Role> roles = roleService.GetRoles();
-            dgRoles.ItemsSource = roles;
+            dgRoles.ItemsSource = roleService.GetRoles();
         }
+
         private void btnAddRole_Click(object sender, RoutedEventArgs e)
         {
-            (Window.GetWindow(this) as MainWindow).contentControl.Content = new ucAddRole();
-
+            MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+            if (mainWindow != null)
+            {
+                mainWindow.contentControl.Content = new ucAddRole();
+            }
         }
 
         private void btnUpdateRole_Click(object sender, RoutedEventArgs e)
@@ -35,11 +39,15 @@ namespace PresentationLayer.Forms
             Role selectedRole = dgRoles.SelectedItem as Role;
             if (selectedRole != null)
             {
-                (Window.GetWindow(this) as MainWindow).contentControl.Content = new ucAddRole(selectedRole);
+                MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+                if (mainWindow != null)
+                {
+                    mainWindow.contentControl.Content = new ucAddRole(selectedRole);
+                }
             }
             else
             {
-                MessageBox.Show("Employee needs to be selected before update!", "Error!");
+                MessageBox.Show("Role needs to be selected before update!", "Error!");
             }
         }
 
@@ -48,16 +56,22 @@ namespace PresentationLayer.Forms
             Role selectedRole = dgRoles.SelectedItem as Role;
             if (selectedRole != null)
             {
-                if (MessageBox.Show("Are you sure you want to delete this role?", "Delete?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this role?", "Delete?", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
                 {
                     roleService.DeleteRole(selectedRole);
-                    (Window.GetWindow(this) as MainWindow).contentControl.Content = new ucManageEmployees();
+                    MainWindow mainWindow = Window.GetWindow(this) as MainWindow;
+                    if (mainWindow != null)
+                    {
+                        mainWindow.contentControl.Content = new ucManageEmployees();
+                    }
                 }
             }
             else
             {
-                MessageBox.Show("Employee needs to be selected before delete!", "Error!");
+                MessageBox.Show("Role needs to be selected before delete!", "Error!");
             }
         }
+
     }
 }
