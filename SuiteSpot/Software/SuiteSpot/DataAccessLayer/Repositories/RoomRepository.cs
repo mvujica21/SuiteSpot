@@ -27,7 +27,7 @@ namespace DataAccessLayer.Repositories
         }
         public List<Room> GetRoomsByCapacity(int numberOfGuests)
         {
-            return Rooms.Where(r => r.maxxCapacity >= numberOfGuests).ToList();
+            return Rooms.Where(r => r.maxCapacity >= numberOfGuests).ToList();
         }
         public bool AddRoom(Room room)
         {
@@ -103,7 +103,7 @@ namespace DataAccessLayer.Repositories
         public async Task<List<Room>> GetAvailableRooms(DateTime checkInDate, DateTime checkOutDate, int roomCount, int guestCount)
         {
             var availableRooms = await Rooms
-                .Where(r => r.maxxCapacity >= guestCount)
+                .Where(r => r.maxCapacity >= guestCount)
                 .ToListAsync();
 
             var bookedRooms = await Context.RoomReservations

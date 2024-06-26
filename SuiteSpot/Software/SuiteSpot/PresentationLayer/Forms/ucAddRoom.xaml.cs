@@ -32,7 +32,7 @@ namespace PresentationLayer.Forms
             {
                 PriceTextBox.Text = room.Price.ToString();
                 RoomTypeComboBox.Text = room.Type;
-                MaxCapacityTextBox.Text = room.maxxCapacity.ToString();
+                MaxCapacityTextBox.Text = room.maxCapacity.ToString();
                 NameTextBox.Text = room.Name;
                 DescriptionTextBox.Text = room.Description;
                 NumberTextBox.Text = room.Number.ToString();
@@ -57,7 +57,7 @@ namespace PresentationLayer.Forms
 
                 currentRoom.Price = price;
                 currentRoom.Type = type;
-                currentRoom.maxxCapacity = maxCapacity;
+                currentRoom.maxCapacity = maxCapacity;
                 currentRoom.Name = name;
                 currentRoom.Description = description;
                 currentRoom.Number = number;
