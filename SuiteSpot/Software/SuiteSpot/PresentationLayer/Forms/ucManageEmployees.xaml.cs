@@ -62,7 +62,7 @@ namespace PresentationLayer.Forms
 
         private void btnManageRoles_Click(object sender, RoutedEventArgs e)
         {
-            (Window.GetWindow(this) as MainWindow).contentControl.Content = new ucManageEmployees();
+            (Window.GetWindow(this) as MainWindow).contentControl.Content = new ucManageRoles();
 
         }
     }

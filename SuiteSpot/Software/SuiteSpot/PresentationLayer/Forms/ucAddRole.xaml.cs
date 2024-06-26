@@ -24,14 +24,14 @@ namespace PresentationLayer.Forms
             currentRole = role;
             if (currentRole != null)
             {
-                txtRoleNmae.Text = role.Name;
+                txtRoleName.Text = role.Name;
             }
         }
         private void btnSaveRole_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string role = txtRoleNmae.Text;
+                string role = txtRoleName.Text;
 
 
                 if (currentRole == null)

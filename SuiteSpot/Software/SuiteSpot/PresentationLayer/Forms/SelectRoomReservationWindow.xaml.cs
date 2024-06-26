@@ -20,12 +20,12 @@ namespace PresentationLayer.Forms
         private async void LoadRoomReservations()
         {
             var roomReservations = await _reservationService.GetUnfinishedRoomReservationsAsync();
-            RoomReservationsListView.ItemsSource = roomReservations;
+            RoomReservationsDataGrid.ItemsSource = roomReservations;
         }
 
         private void Select_Click(object sender, RoutedEventArgs e)
         {
-            SelectedRoomReservation = RoomReservationsListView.SelectedItem as RoomReservation;
+            SelectedRoomReservation = RoomReservationsDataGrid.SelectedItem as RoomReservation;
             DialogResult = true;
             Close();
         }

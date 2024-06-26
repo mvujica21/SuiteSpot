@@ -36,8 +36,7 @@ namespace PresentationLayer.Forms
             if (AvailableRoomsListView.SelectedItem is Room selectedRoom)
             {
                 var guestEntryControl = new ucGuestEntry(selectedRoom, _guestCount, _checkInDate, _checkOutDate);
-                var mainWindow = (MainWindow)Application.Current.MainWindow;
-                mainWindow.contentControl.Content = guestEntryControl;
+                (Window.GetWindow(this) as MainWindow).contentControl.Content = guestEntryControl;
             }
             else
             {

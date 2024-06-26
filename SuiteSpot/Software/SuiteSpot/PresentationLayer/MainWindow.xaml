@@ -6,19 +6,51 @@
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
-    <DockPanel Background="LightSkyBlue">
+    <Window.Resources>
+        <!-- Define a gradient background for the window -->
+        <LinearGradientBrush x:Key="WindowBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="LightSkyBlue" Offset="0"/>
+            <GradientStop Color="LightSteelBlue" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Define a style for the buttons -->
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="CornflowerBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" BlurRadius="10" ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <DockPanel Background="{StaticResource WindowBackgroundBrush}">
         <StackPanel DockPanel.Dock="Left" Width="125" Background="AliceBlue" x:Name="navBar">
-            <Button Content="Login" Height="60" x:Name="btnLogin" Click="btnLogin_Click"/>
-            <Button Content="Room reservation" Height="60" x:Name="btnRoomReservation" Click="btnRoomReservation_Click" Visibility="Collapsed"/>
-            <Button Content="Room managment"  Height="60" Click="btnRoomManagement_Click" x:Name="btnRoomManagment" Visibility="Collapsed"/>
-            <Button Content="Manage employees"  Height="60" x:Name="btnManageEmployees" Click="btnManageEmployees_Click" Visibility="Collapsed"/>
-            <Button Content="Bills"  Height="60" x:Name="btnBills" Click="btnBills_Click" Visibility="Collapsed"/>
-            <Button Content="Facilities" Height="60" x:Name="btnFacilities" Click="btnFacilities_Click" Visibility="Collapsed"/>
-            <Button Content="Work schedule" Height="60" x:Name="btnWorkSchedule" Click="btnWorkSchedule_Click" Visibility="Collapsed"/>
-            <Button Content="Logout" Height="60" x:Name="btnLogout" Visibility="Collapsed" Click="btnLogout_Click"/> 
+            <Button Content="Login" x:Name="btnLogin" Click="btnLogin_Click"/>
+            <Button Content="Room reservation" x:Name="btnRoomReservation" Click="btnRoomReservation_Click" Visibility="Collapsed"/>
+            <Button Content="Room management" Click="btnRoomManagement_Click" x:Name="btnRoomManagment" Visibility="Collapsed"/>
+            <Button Content="Manage employees" x:Name="btnManageEmployees" Click="btnManageEmployees_Click" Visibility="Collapsed"/>
+            <Button Content="Bills" x:Name="btnBills" Click="btnBills_Click" Visibility="Collapsed"/>
+            <Button Content="Facilities" x:Name="btnFacilities" Click="btnFacilities_Click" Visibility="Collapsed"/>
+            <Button Content="Work schedule" x:Name="btnWorkSchedule" Click="btnWorkSchedule_Click" Visibility="Collapsed"/>
+            <Button Content="Logout" x:Name="btnLogout" Visibility="Collapsed" Click="btnLogout_Click"/>
         </StackPanel>
-        <ContentControl x:Name="contentControl">
-            
-        </ContentControl>
+        <ContentControl x:Name="contentControl" Margin="10"/>
     </DockPanel>
 </Window>

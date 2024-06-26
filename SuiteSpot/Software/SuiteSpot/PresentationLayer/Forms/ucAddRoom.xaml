@@ -6,6 +6,60 @@
              xmlns:local="clr-namespace:PresentationLayer.Forms"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!-- Common styles for buttons -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="CornflowerBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" BlurRadius="10" ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style for TextBlocks -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <!-- Style for ComboBox -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+        <!-- Style for TextBox -->
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -31,21 +85,25 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Text="Price:" VerticalAlignment="Center"/>
-            <TextBlock Text="Type of Room:" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBlock Text="Capacity:" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBlock Text="Name:" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBlock Text="Description:" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBlock Text="Number:" Grid.Row="5" VerticalAlignment="Center"/>
-
             <TextBox Grid.Column="1" VerticalAlignment="Center" Margin="10" x:Name="PriceTextBox"/>
+
+            <TextBlock Text="Type of Room:" Grid.Row="1" VerticalAlignment="Center"/>
             <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10" x:Name="RoomTypeComboBox">
                 <ComboBoxItem Content="Single" />
                 <ComboBoxItem Content="Double" />
                 <ComboBoxItem Content="Suite" />
             </ComboBox>
+
+            <TextBlock Text="Capacity:" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="10" x:Name="MaxCapacityTextBox"/>
+
+            <TextBlock Text="Name:" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="10" x:Name="NameTextBox"/>
+
+            <TextBlock Text="Description:" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10" x:Name="DescriptionTextBox"/>
+
+            <TextBlock Text="Number:" Grid.Row="5" VerticalAlignment="Center"/>
             <TextBox Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="10" x:Name="NumberTextBox"/>
 
             <StackPanel Grid.Column="1" Grid.Row="7" Orientation="Horizontal" Margin="10">

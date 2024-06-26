@@ -6,6 +6,49 @@
              xmlns:local="clr-namespace:PresentationLayer.Forms"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="CornflowerBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" BlurRadius="10" ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -16,17 +59,20 @@
             <TabItem Header="Number of Rooms">
                 <Grid>
                     <TextBlock Text="Select Number of Rooms:" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10"/>
-                    <ComboBox x:Name="numRoomsComboBox" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Margin="10">
+                    <ComboBox x:Name="numRoomsComboBox" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <ComboBoxItem Content="1"/>
                         <ComboBoxItem Content="2"/>
                         <ComboBoxItem Content="3"/>
+                        <ComboBoxItem Content="4"/>
+                        <ComboBoxItem Content="5"/>
+                        <ComboBoxItem Content="6"/>
                     </ComboBox>
                 </Grid>
             </TabItem>
             <TabItem Header="Number of Guests">
                 <Grid>
                     <TextBlock Text="Select Number of Guests:" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10"/>
-                    <ComboBox x:Name="numGuestsComboBox" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Margin="10">
+                    <ComboBox x:Name="numGuestsComboBox" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <ComboBoxItem Content="1"/>
                         <ComboBoxItem Content="2"/>
                         <ComboBoxItem Content="3"/>

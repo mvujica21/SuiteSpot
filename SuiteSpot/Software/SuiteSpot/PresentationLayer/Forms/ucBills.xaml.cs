@@ -35,8 +35,7 @@ namespace PresentationLayer.Forms
             if (BillsDataGrid.SelectedItem is Bill selectedBill)
             {
                 var billDetailsControl = new ucBillDetails(selectedBill);
-                var mainWindow = (MainWindow)Application.Current.MainWindow;
-                mainWindow.contentControl.Content = billDetailsControl;
+                (Window.GetWindow(this) as MainWindow).contentControl.Content = billDetailsControl;
             }
             else
             {
