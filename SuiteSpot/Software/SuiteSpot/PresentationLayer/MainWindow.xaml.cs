@@ -94,6 +94,7 @@ namespace PresentationLayer
             SessionManager.UserRole = null;
             contentControl.Content = null;
             CheckUserRole(SessionManager.UserRole);
+            MessageBox.Show("You are succesfully logged out.");
         }
     }
 }
