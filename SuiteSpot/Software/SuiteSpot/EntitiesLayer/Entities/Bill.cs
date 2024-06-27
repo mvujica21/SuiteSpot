@@ -14,8 +14,6 @@ namespace HotelManagement.Entities
         [Column("room_reservation_id")]
 
         public int? RoomReservationId { get; set; }
-        [Column("room_reservation_id")]
-
         public RoomReservation RoomReservation { get; set; }
 
         public ICollection<FacilityBilling> FacilityBillings { get; set; }

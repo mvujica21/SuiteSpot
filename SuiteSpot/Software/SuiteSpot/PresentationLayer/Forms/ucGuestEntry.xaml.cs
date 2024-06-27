@@ -58,8 +58,7 @@ namespace PresentationLayer.Forms
                 var roomReservation = await _reservationService.CreateRoomReservationAsync(_selectedRoom, _guests, _startDate, _endDate, SessionManager.EmployeeId);
 
                 MessageBox.Show("Guest information and room reservation saved successfully!");
-                var mainWindow = (MainWindow)Application.Current.MainWindow;
-                mainWindow.contentControl.Content = new ucRoomReservationNumGuests();
+                (Window.GetWindow(this) as MainWindow).contentControl.Content = new ucRoomReservationNumGuests();
             }
         }
 

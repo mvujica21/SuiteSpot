@@ -25,6 +25,11 @@ namespace PresentationLayer.Forms
         private void LoadRooms()
         {
             allRooms = roomService.GetRooms();
+            if (allRooms == null)
+            {
+                MessageBox.Show("No rooms loaded.", "Error");
+                return;
+            }
             dgRooms.ItemsSource = allRooms;
 
         }

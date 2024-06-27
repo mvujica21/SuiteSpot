@@ -111,7 +111,7 @@ namespace PresentationLayer.Forms
             }
 
             MessageBox.Show("Bill finalized.");
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            var mainWindow = Window.GetWindow(this) as MainWindow;
             mainWindow.contentControl.Content = new ucBills();
         }
 
@@ -141,7 +141,7 @@ namespace PresentationLayer.Forms
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            var mainWindow = Window.GetWindow(this) as MainWindow;
             mainWindow.contentControl.Content = new ucBills();
         }
     }

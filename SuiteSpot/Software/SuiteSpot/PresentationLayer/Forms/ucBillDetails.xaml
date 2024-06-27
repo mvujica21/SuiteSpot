@@ -54,13 +54,6 @@
         <Style TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="Padding" Value="5"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <MultiBinding Converter="{StaticResource AlternationIndexToColorConverter}">
-                        <Binding RelativeSource="{RelativeSource Self}" Path="(ItemsControl.AlternationIndex)"/>
-                    </MultiBinding>
-                </Setter.Value>
-            </Setter>
             <Setter Property="BorderBrush" Value="Gray"/>
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
         </Style>
