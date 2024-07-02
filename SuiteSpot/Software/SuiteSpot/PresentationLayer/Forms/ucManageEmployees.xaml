@@ -68,7 +68,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="67"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Employees" FontSize="24" FontWeight="Bold" Foreground="#212F3D" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10"/>
         <DataGrid x:Name="dgEmployees" Grid.Row="1" AutoGenerateColumns="False" Margin="10">
