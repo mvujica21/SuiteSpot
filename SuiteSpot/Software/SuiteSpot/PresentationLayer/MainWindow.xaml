@@ -5,15 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="SuiteSpot" Height="600" Width="800">
     <Window.Resources>
-        <!-- Define a gradient background for the window -->
         <LinearGradientBrush x:Key="WindowBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="LightSkyBlue" Offset="0"/>
             <GradientStop Color="LightSteelBlue" Offset="1"/>
         </LinearGradientBrush>
 
-        <!-- Define a style for the buttons -->
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="Padding" Value="10"/>

@@ -7,7 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <!-- Common styles for buttons -->
         <Style TargetType="Button">
             <Setter Property="Background" Value="CornflowerBlue"/>
             <Setter Property="Foreground" Value="White"/>
@@ -35,13 +34,11 @@
             </Setter>
         </Style>
 
-        <!-- Style for TextBlocks -->
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
 
-        <!-- Style for ListView -->
         <Style TargetType="ListView">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="BorderBrush" Value="Gray"/>
@@ -50,7 +47,6 @@
             <Setter Property="AlternationCount" Value="2"/>
         </Style>
 
-        <!-- Style for ListView items -->
         <Style TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
             <Setter Property="Padding" Value="5"/>
@@ -58,7 +54,6 @@
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
         </Style>
 
-        <!-- Style for GridViewColumn headers -->
         <Style TargetType="GridViewColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="5"/>

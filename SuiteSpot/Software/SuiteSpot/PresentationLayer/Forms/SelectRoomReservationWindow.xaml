@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Select Room Reservation" Height="450" Width="800">
     <Window.Resources>
-        <!-- Common styles for buttons -->
         <Style TargetType="Button">
             <Setter Property="Background" Value="CornflowerBlue"/>
             <Setter Property="Foreground" Value="White"/>
@@ -30,12 +29,10 @@
             </Setter>
         </Style>
 
-        <!-- Style for TextBlocks -->
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="0,0,0,10"/>
         </Style>
 
-        <!-- Style for DataGrid -->
         <Style TargetType="DataGrid">
             <Setter Property="Margin" Value="0,0,0,10"/>
             <Setter Property="BorderBrush" Value="Gray"/>

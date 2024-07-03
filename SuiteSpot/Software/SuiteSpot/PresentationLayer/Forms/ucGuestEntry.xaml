@@ -7,7 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <!-- Common styles for buttons -->
         <Style TargetType="Button">
             <Setter Property="Background" Value="CornflowerBlue"/>
             <Setter Property="Foreground" Value="White"/>

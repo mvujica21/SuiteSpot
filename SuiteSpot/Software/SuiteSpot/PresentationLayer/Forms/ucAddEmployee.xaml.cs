@@ -36,8 +36,8 @@ namespace PresentationLayer.Forms
                     .Cast<ComboBoxItem>()
                     .FirstOrDefault(item => item.Content.ToString() == GetRoleNameById(employee.RoleId));
                 UsernameTextBox.Text = employee.Username;
-                UsernameTextBox.IsEnabled = false; // Disable editing username on update
-                PasswordBox.Password = string.Empty; // Clear password field for security
+                UsernameTextBox.IsEnabled = false; 
+                PasswordBox.Password = string.Empty;
             }
         }
 
@@ -79,12 +79,10 @@ namespace PresentationLayer.Forms
                 {
                     if (!string.IsNullOrWhiteSpace(password))
                     {
-                        // If password is provided, update the hash and salt
                         employeeService.AddEmployee(username, password, firstName, lastName, email, phoneNumber, roleId);
                     }
                     else
                     {
-                        // Only update other fields
                         employeeService.UpdateEmployee(currentEmployee);
                     }
                 }

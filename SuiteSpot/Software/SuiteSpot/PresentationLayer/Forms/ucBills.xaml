@@ -7,7 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <!-- Common styles for buttons -->
         <Style TargetType="Button">
             <Setter Property="Background" Value="CornflowerBlue"/>
             <Setter Property="Foreground" Value="White"/>
@@ -35,7 +34,6 @@
             </Setter>
         </Style>
 
-        <!-- Style for DataGrid -->
         <Style TargetType="DataGrid">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="BorderBrush" Value="Gray"/>
@@ -51,7 +49,6 @@
             <Setter Property="RowBackground" Value="White"/>
         </Style>
 
-        <!-- Style for DataGrid columns -->
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="5"/>

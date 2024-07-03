@@ -7,7 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <!-- Common styles for buttons -->
         <Style TargetType="Button">
             <Setter Property="Background" Value="CornflowerBlue"/>
             <Setter Property="Foreground" Value="White"/>
@@ -35,13 +34,11 @@
             </Setter>
         </Style>
 
-        <!-- Style for TextBlocks -->
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="5"/>
             <Setter Property="FontSize" Value="14"/>
         </Style>
 
-        <!-- Style for ComboBox -->
         <Style TargetType="ComboBox">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Padding" Value="5"/>
@@ -50,7 +47,6 @@
             <Setter Property="Background" Value="White"/>
         </Style>
 
-        <!-- Style for TextBox -->
         <Style TargetType="TextBox">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="Padding" Value="5"/>

@@ -32,7 +32,7 @@ namespace BusinessLogicLayer.Services
                     var existingGuest = await reservationRepository.GetGuestByEmailAsync(guest.Email);
                     if (existingGuest != null)
                     {
-                        guest.Id = existingGuest.Id; // Assign the ID of the existing guest
+                        guest.Id = existingGuest.Id;
                     }
                     else
                     {

@@ -78,7 +78,7 @@ namespace PresentationLayer.Forms
                 if (selectedDate < DateTime.Today)
                 {
                     Debug.WriteLine($"Date {selectedDate.ToShortDateString()} is before today and cannot be selected.");
-                    return; // Ignore dates before today
+                    return; 
                 }
 
                 if (_checkInDate == null || _checkOutDate != null)
