@@ -10,18 +10,31 @@ namespace PresentationLayer.Forms
     public partial class ucAddEmployee : UserControl
     {
         private EmployeeService employeeService;
+        private RoleService roleService;
         private Employee currentEmployee;
 
         public ucAddEmployee()
         {
             InitializeComponent();
             employeeService = new EmployeeService();
+            roleService = new RoleService();
+            PopulateRoleComboBox();
         }
 
         public ucAddEmployee(Employee employee) : this()
         {
             currentEmployee = employee;
             PopulateEmployeeData(employee);
+        }
+
+        private void PopulateRoleComboBox()
+        {
+            RoleComboBox.Items.Clear();
+            var roles = roleService.GetRoles();
+            foreach (var role in roles)
+            {
+                RoleComboBox.Items.Add(new ComboBoxItem { Content = role.Name, Tag = role.Id });
+            }
         }
 
         private void PopulateEmployeeData(Employee employee)
@@ -34,9 +47,9 @@ namespace PresentationLayer.Forms
                 PhoneNumberTextBox.Text = employee.PhoneNumber;
                 RoleComboBox.SelectedItem = RoleComboBox.Items
                     .Cast<ComboBoxItem>()
-                    .FirstOrDefault(item => item.Content.ToString() == GetRoleNameById(employee.RoleId));
+                    .FirstOrDefault(item => (int)item.Tag == employee.RoleId);
                 UsernameTextBox.Text = employee.Username;
-                UsernameTextBox.IsEnabled = false; 
+                UsernameTextBox.IsEnabled = false;
                 PasswordBox.Password = string.Empty;
             }
         }
@@ -51,8 +64,19 @@ namespace PresentationLayer.Forms
                 string phoneNumber = PhoneNumberTextBox.Text;
                 string username = UsernameTextBox.Text;
                 string password = PasswordBox.Password;
-                string roleName = (RoleComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
-                int roleId = GetRoleIdByName(roleName);
+                var selectedRoleItem = RoleComboBox.SelectedItem as ComboBoxItem;
+                int roleId = selectedRoleItem != null ? (int)selectedRoleItem.Tag : 0;
+
+                if (string.IsNullOrWhiteSpace(firstName) ||
+                    string.IsNullOrWhiteSpace(lastName) ||
+                    string.IsNullOrWhiteSpace(email) ||
+                    string.IsNullOrWhiteSpace(phoneNumber) ||
+                    string.IsNullOrWhiteSpace(username) ||
+                    roleId == 0)
+                {
+                    MessageBox.Show("All fields are required.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
                 if (currentEmployee == null)
                 {
@@ -93,36 +117,6 @@ namespace PresentationLayer.Forms
             catch (Exception ex)
             {
                 MessageBox.Show($"Error saving employee: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        private int GetRoleIdByName(string roleName)
-        {
-            switch (roleName)
-            {
-                case "Manager":
-                    return 1;
-                case "Reception":
-                    return 2;
-                case "Cleaning":
-                    return 3;
-                default:
-                    throw new ArgumentException("Invalid role name");
-            }
-        }
-
-        private string GetRoleNameById(int roleId)
-        {
-            switch (roleId)
-            {
-                case 1:
-                    return "Manager";
-                case 2:
-                    return "Reception";
-                case 3:
-                    return "Cleaning";
-                default:
-                    throw new ArgumentException("Invalid role ID");
             }
         }
     }

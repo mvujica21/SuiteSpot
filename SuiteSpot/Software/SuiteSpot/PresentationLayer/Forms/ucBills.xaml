@@ -72,7 +72,7 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
                 <Button Content="Add Bill" Click="AddBill_Click"/>
                 <Button Content="Modify Bill" Click="ModifyBill_Click"/>
-                <Button Content="Delete Bill" Click="DeleteBill_Click"/>
+                <Button Content="Cancel bill" Click="DeleteBill_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

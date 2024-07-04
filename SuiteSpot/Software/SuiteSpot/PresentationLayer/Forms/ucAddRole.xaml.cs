@@ -14,11 +14,13 @@ namespace PresentationLayer.Forms
     {
         private RoleService roleService;
         private Role currentRole;
+
         public ucAddRole()
         {
             InitializeComponent();
             roleService = new RoleService();
         }
+
         public ucAddRole(Role role) : this()
         {
             currentRole = role;
@@ -27,29 +29,34 @@ namespace PresentationLayer.Forms
                 txtRoleName.Text = role.Name;
             }
         }
+
         private void btnSaveRole_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                string role = txtRoleName.Text;
+                string roleName = txtRoleName.Text.Trim();
 
+                if (string.IsNullOrWhiteSpace(roleName))
+                {
+                    MessageBox.Show("Role name cannot be empty.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
                 if (currentRole == null)
                 {
                     currentRole = new Role();
                 }
 
-                currentRole.Name = role;
-
+                currentRole.Name = roleName;
 
                 if (currentRole.Id == 0)
                 {
-                    Debug.WriteLine($"Adding employee: {Name}");
+                    Debug.WriteLine($"Adding role: {currentRole.Name}");
                     roleService.AddRole(currentRole);
                 }
                 else
                 {
-                    Debug.WriteLine($"Updating role: {Name}");
+                    Debug.WriteLine($"Updating role: {currentRole.Name}");
                     roleService.UpdateRole(currentRole);
                 }
 
