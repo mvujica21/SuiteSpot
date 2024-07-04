@@ -26,7 +26,7 @@ namespace PresentationLayer.Forms
         {
             var newBill = await _billService.CreateBillAsync();
             var billDetailsControl = new ucBillDetails(newBill);
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            var mainWindow = (Window.GetWindow(this) as MainWindow);
             mainWindow.contentControl.Content = billDetailsControl;
         }
 

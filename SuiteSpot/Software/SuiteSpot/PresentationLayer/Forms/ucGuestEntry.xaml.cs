@@ -31,7 +31,7 @@ namespace PresentationLayer.Forms
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = (MainWindow)Application.Current.MainWindow;
+            var mainWindow = (Window.GetWindow(this) as MainWindow);
             var availableRoomsControl = new ucAvailableRoomsControl(new List<Room>(), 0, 0, _startDate, _endDate);
             mainWindow.contentControl.Content = availableRoomsControl;
         }

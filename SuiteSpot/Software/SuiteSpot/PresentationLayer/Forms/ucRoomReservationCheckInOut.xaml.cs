@@ -147,6 +147,10 @@ namespace PresentationLayer.Forms
                 var availableRooms = await FetchAvailableRooms(_checkInDate.Value, _checkOutDate.Value, RoomCount, GuestCount);
                 DisplayAvailableRooms(availableRooms, _checkInDate.Value, _checkOutDate.Value);
             }
+            else
+            {
+                MessageBox.Show("Please select a check in and out date first");
+            }
         }
 
         private Task<List<Room>> FetchAvailableRooms(DateTime checkInDate, DateTime checkOutDate, int roomCount, int guestCount)
