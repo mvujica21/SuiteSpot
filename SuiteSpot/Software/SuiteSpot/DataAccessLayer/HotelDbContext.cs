@@ -12,7 +12,6 @@ namespace DataAccessLayer
         }
         public DbSet<Room> Room { get; set; }
         public DbSet<Guest> Guests { get; set; }
-        public DbSet<Review> Reviews { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<RoomReservation> RoomReservations { get; set; }
@@ -22,9 +21,6 @@ namespace DataAccessLayer
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Facility> Facilities { get; set; }
         public DbSet<FacilityBilling> FacilityBillings { get; set; }
-        public DbSet<ContactDetails> ContactDetails { get; set; }
-        public DbSet<EventSpace> EventSpaces { get; set; }
-        public DbSet<EventReservation> EventReservations { get; set; }
         public DbSet<RoomReservationGuest> RoomReservationGuests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

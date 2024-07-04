@@ -11,8 +11,6 @@ namespace HotelManagement.Entities
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
-        public ICollection<Review> Reviews { get; set; }
         public ICollection<RoomReservationGuest> RoomReservationGuests { get; set; }
-        public ICollection<EventReservation> EventReservations { get; set; }
     }
 }

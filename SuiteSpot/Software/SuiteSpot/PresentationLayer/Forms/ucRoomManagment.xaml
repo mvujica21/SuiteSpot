@@ -104,7 +104,7 @@
                 <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*"/>
                 <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
                 <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"/>
-                <DataGridTextColumn Header="Capacity" Binding="{Binding MaxCapacity}" Width="*"/>
+                <DataGridTextColumn Header="Capacity" Binding="{Binding maxCapacity}" Width="*"/>
 
             </DataGrid.Columns>
         </DataGrid>

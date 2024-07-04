@@ -45,15 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Bill.cs" />
-    <Compile Include="Entities\ContactDetails.cs" />
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\EmployeeSchedule.cs" />
-    <Compile Include="Entities\EventReservation.cs" />
-    <Compile Include="Entities\EventSpace.cs" />
     <Compile Include="Entities\Facility.cs" />
     <Compile Include="Entities\FacilityBilling.cs" />
     <Compile Include="Entities\Guest.cs" />
-    <Compile Include="Entities\Review.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Entities\RoomReservation.cs" />
