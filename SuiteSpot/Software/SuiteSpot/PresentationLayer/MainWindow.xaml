@@ -1,0 +1,54 @@
+﻿<Window x:Class="PresentationLayer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        mc:Ignorable="d"
+        Title="SuiteSpot" Height="600" Width="800">
+    <Window.Resources>
+        <LinearGradientBrush x:Key="WindowBackgroundBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="LightSkyBlue" Offset="0"/>
+            <GradientStop Color="LightSteelBlue" Offset="1"/>
+        </LinearGradientBrush>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="CornflowerBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" BlurRadius="10" ShadowDepth="2"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <DockPanel Background="{StaticResource WindowBackgroundBrush}">
+        <StackPanel DockPanel.Dock="Left" Width="125" Background="AliceBlue" x:Name="navBar">
+            <Button Content="Login" x:Name="btnLogin" Click="btnLogin_Click"/>
+            <Button Content="Room reservation" x:Name="btnRoomReservation" Click="btnRoomReservation_Click" Visibility="Collapsed"/>
+            <Button Content="Room management" Click="btnRoomManagement_Click" x:Name="btnRoomManagment" Visibility="Collapsed"/>
+            <Button Content="Manage employees" x:Name="btnManageEmployees" Click="btnManageEmployees_Click" Visibility="Collapsed"/>
+            <Button Content="Bills" x:Name="btnBills" Click="btnBills_Click" Visibility="Collapsed"/>
+            <Button Content="Facilities" x:Name="btnFacilities" Click="btnFacilities_Click" Visibility="Collapsed"/>
+            <Button Content="Work schedule" x:Name="btnWorkSchedule" Click="btnWorkSchedule_Click" Visibility="Collapsed"/>
+            <Button Content="Logout" x:Name="btnLogout" Visibility="Collapsed" Click="btnLogout_Click"/>
+        </StackPanel>
+        <ContentControl x:Name="contentControl" Margin="10"/>
+    </DockPanel>
+</Window>

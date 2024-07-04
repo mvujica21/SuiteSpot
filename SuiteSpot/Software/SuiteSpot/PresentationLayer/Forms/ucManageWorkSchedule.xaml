@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="PresentationLayer.Forms.ucManageWorkSchedule"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:PresentationLayer.Forms"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#2E86C1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Background" Value="#2E86C1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F0F3F4"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#AED6F1"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#AED6F1"/>
+            <Setter Property="BorderBrush" Value="#AED6F1"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Height" Value="35"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ColumnHeaderStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#2E86C1"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="Height" Value="40"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="#F0F3F4" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center" Margin="10">
+            <TextBlock Text="Legend: " FontWeight="Bold" Margin="0,0,10,0"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                <Rectangle Width="20" Height="20" Fill="Yellow" Margin="0,0,5,0"/>
+                <TextBlock Text="Morning Shift"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                <Rectangle Width="20" Height="20" Fill="Blue" Margin="0,0,5,0"/>
+                <TextBlock Text="Afternoon Shift"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                <Rectangle Width="20" Height="20" Fill="Green" Margin="0,0,5,0"/>
+                <TextBlock Text="Night Shift"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
+                <Rectangle Width="20" Height="20" Fill="Gray" Margin="0,0,5,0"/>
+                <TextBlock Text="Off"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" Margin="10">
+            <ComboBox x:Name="cbEmployees" Width="150" Margin="5" DisplayMemberPath="EmployeeName"/>
+            <ComboBox x:Name="cbDates" Width="150" Margin="5"/>
+            <ComboBox x:Name="cbShifts" Width="150" Margin="5">
+                <ComboBoxItem Content="07:00 - 15:00" />
+                <ComboBoxItem Content="15:00 - 23:00" />
+                <ComboBoxItem Content="23:00 - 07:00" />
+                <ComboBoxItem Content="Off" />
+            </ComboBox>
+            <Button Content="Add Shift" Width="100" Margin="5" Click="btnAddShift_Click"/>
+        </StackPanel>
+
+        <DataGrid x:Name="dgWorkSchedule" Grid.Row="2" AutoGenerateColumns="False" Margin="10">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Content.Text, RelativeSource={RelativeSource Self}}" Value="07:00 - 15:00">
+                            <Setter Property="Background" Value="Yellow"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Content.Text, RelativeSource={RelativeSource Self}}" Value="15:00 - 23:00">
+                            <Setter Property="Background" Value="Blue"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Content.Text, RelativeSource={RelativeSource Self}}" Value="23:00 - 07:00">
+                            <Setter Property="Background" Value="Green"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Content.Text, RelativeSource={RelativeSource Self}}" Value="Off">
+                            <Setter Property="Background" Value="Gray"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Employee" Binding="{Binding EmployeeName}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
